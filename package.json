@@ -15,7 +15,7 @@
     "spec:lint": "pnpm --filter @wifilabel/codegen spec:lint",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
-    "lint": "eslint . && prettier --check . && pnpm spec:lint",
+    "lint": "eslint . && prettier --check . && pnpm spec:lint && node scripts/check-package-readmes.mjs",
     "test": "vitest run && pnpm test:c",
     "test:c": "cmake -S c -B c/build-host && cmake --build c/build-host && ctest --test-dir c/build-host --output-on-failure",
     "preview:labelary": "node scripts/preview-labelary.mjs"

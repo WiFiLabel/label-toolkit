@@ -1,7 +1,15 @@
 {
   "name": "@wifilabel/transport",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Byte transport interface for thermal printer sessions. No network and no USB driver.",
+  "keywords": [
+    "label-printer",
+    "thermal-printer"
+  ],
+  "homepage": "https://wifilabel.com/",
+  "bugs": {
+    "url": "https://github.com/WiFiLabel/label-toolkit/issues"
+  },
   "license": "MIT",
   "author": "WiFiLabel <hello@wifilabel.com>",
   "type": "module",
