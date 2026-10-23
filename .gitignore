@@ -11,6 +11,9 @@ c/examples/esp-idf-basic/sdkconfig.old
 c/examples/esp-idf-basic/managed_components/
 c/examples/esp-idf-basic/dependencies.lock
 .DS_Store
+
+# Local ship-loop rule. Kept on disk, not in git.
+.cursor/rules/ship-loop.mdc
 apps/tools/.next/
 apps/tools/test-results/
 apps/tools/playwright-report/
