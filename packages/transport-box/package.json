@@ -1,7 +1,16 @@
 {
   "name": "@wifilabel/box-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Stub client for a WiFiLabel box on the local network.",
+  "keywords": [
+    "label-printer",
+    "print-server",
+    "thermal-printer"
+  ],
+  "homepage": "https://wifilabel.com/",
+  "bugs": {
+    "url": "https://github.com/WiFiLabel/label-toolkit/issues"
+  },
   "license": "MIT",
   "author": "WiFiLabel <hello@wifilabel.com>",
   "type": "module",

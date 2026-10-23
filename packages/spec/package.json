@@ -1,7 +1,19 @@
 {
   "name": "@wifilabel/printer-spec",
-  "version": "0.1.0",
-  "description": "Generated command, SGD, status, and printer profiles for thermal label printers.",
+  "version": "0.1.1",
+  "description": "ZPL, EPL2, SGD, status, and printer profiles for thermal label printers.",
+  "keywords": [
+    "zpl",
+    "epl2",
+    "sgd",
+    "zebra",
+    "label-printer",
+    "thermal-printer"
+  ],
+  "homepage": "https://wifilabel.com/",
+  "bugs": {
+    "url": "https://github.com/WiFiLabel/label-toolkit/issues"
+  },
   "license": "MIT",
   "author": "WiFiLabel <hello@wifilabel.com>",
   "type": "module",

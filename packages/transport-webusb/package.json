@@ -1,7 +1,18 @@
 {
   "name": "@wifilabel/webusb",
-  "version": "0.1.0",
-  "description": "WebUSB transport for thermal label printers. Chromium only.",
+  "version": "0.1.1",
+  "description": "WebUSB transport for USB label printers. Chrome and Edge only.",
+  "keywords": [
+    "webusb",
+    "zebra",
+    "zpl",
+    "label-printer",
+    "thermal-printer"
+  ],
+  "homepage": "https://wifilabel.com/",
+  "bugs": {
+    "url": "https://github.com/WiFiLabel/label-toolkit/issues"
+  },
   "license": "MIT",
   "author": "WiFiLabel <hello@wifilabel.com>",
   "type": "module",
