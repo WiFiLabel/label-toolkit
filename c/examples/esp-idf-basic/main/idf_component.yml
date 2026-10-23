@@ -1,0 +1,9 @@
+## This example is built from inside the component tree, where the directory
+## name is c. An external firmware project should depend on the component
+## like this instead, then REQUIRES label_toolkit:
+##
+## dependencies:
+##   label_toolkit:
+##     git: https://github.com/WiFiLabel/label-toolkit.git
+##     path: c
+dependencies: {}

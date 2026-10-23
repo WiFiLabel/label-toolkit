@@ -1,0 +1,21 @@
+id: "HH"
+language: "zpl"
+prefix: "^"
+name: "Configuration to Host"
+category: "status"
+syntax: "^HH"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Returns the configuration listing to the host instead of printing it."
+explain: "Configuration to host sends the same kind of setup listing as the printed configuration label, but back up the data channel. Use it when you cannot spare a label or when a program wants the text. The reply is long and line oriented, so read until the channel goes quiet. It does not change settings. Parsing every line is out of scope for the first status helpers, which focus on identification and the short status frames. If the reply is empty, the host channel may be write-only on that interface. Fall back to the short status query."
+symptoms: ["unknown-model"]
+examples:
+  - title: "Return configuration to the host"
+    code: "^XA^HH^XZ"
+seeAlso: ["WC", "HI"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hh.html"

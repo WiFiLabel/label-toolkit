@@ -1,0 +1,27 @@
+id: "PR"
+language: "zpl"
+prefix: "^"
+name: "Print Rate"
+category: "print-quality"
+syntax: "^PRp,s,b"
+joiner: ","
+params:
+  - key: "p"
+    name: "print speed"
+    type: "number"
+    range: [1, 14]
+    step: 1
+    units: "ips"
+persist: "^JUS"
+sgd: "media.speed"
+risk: "caution"
+summary: "Sets how fast the media moves while printing, in inches per second."
+explain: "Print rate picks the media speed used while the head is printing. Optional later fields can set slew and backfeed speeds, but a single number is enough for setup. Slower speeds usually make small barcodes cleaner. Faster speeds shorten a batch and often need a darker setting to keep the same contrast. The printer silently clamps a number that is higher than the mechanism can run, so a desktop that tops out at 6 ips will not actually run at 12. Change speed with a known label, not during a live order, and save only after the barcode still scans."
+symptoms: ["faded-print", "slow-throughput"]
+examples:
+  - title: "Print at 4 inches per second"
+    code: "^XA^PR4^XZ"
+seeAlso: ["SD", "MD", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-pr-print-rate.html"

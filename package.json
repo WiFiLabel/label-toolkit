@@ -1,0 +1,33 @@
+{
+  "name": "label-toolkit",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Schema-first library for configuring and diagnosing thermal label printers.",
+  "license": "MIT",
+  "author": "WiFiLabel <hello@wifilabel.com>",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@12.14.0",
+  "scripts": {
+    "gen": "pnpm --filter @wifilabel/codegen gen",
+    "spec:lint": "pnpm --filter @wifilabel/codegen spec:lint",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "eslint . && prettier --check . && pnpm spec:lint",
+    "test": "vitest run && pnpm test:c",
+    "test:c": "cmake -S c -B c/build-host && cmake --build c/build-host && ctest --test-dir c/build-host --output-on-failure",
+    "preview:labelary": "node scripts/preview-labelary.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "eslint": "10.13.0",
+    "prettier": "3.9.10",
+    "turbo": "2.11.9",
+    "@changesets/cli": "3.0.3",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.72.0",
+    "vitest": "5.0.5"
+  }
+}

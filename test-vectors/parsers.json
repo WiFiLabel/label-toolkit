@@ -1,0 +1,154 @@
+{
+  "parsers": [
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c302c302c313234352c3030302c302c302c302c3030302c302c302c30030d0a023030302c302c302c302c302c302c302c302c30303030303030302c302c303030030d0a02303030302c30030d0a",
+      "expected": {
+        "paperOut": false,
+        "paused": false,
+        "headUp": false,
+        "ribbonOut": false,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": []
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c312c302c313234352c3030302c302c302c302c3030302c302c302c30030d0a023030302c302c302c302c302c302c302c302c30303030303030302c302c303030030d0a02303030302c30030d0a",
+      "expected": {
+        "paperOut": true,
+        "paused": false,
+        "headUp": false,
+        "ribbonOut": false,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": ["paper-out"]
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c302c312c313234352c3030302c302c302c302c3030302c302c302c30030d0a023030302c302c302c302c302c302c302c302c30303030303030302c302c303030030d0a02303030302c30030d0a",
+      "expected": {
+        "paperOut": false,
+        "paused": true,
+        "headUp": false,
+        "ribbonOut": false,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": ["paused"]
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c302c302c313234352c3030302c312c302c302c3030302c302c302c30030d0a023030302c302c302c302c302c302c302c302c30303030303030302c302c303030030d0a02303030302c30030d0a",
+      "expected": {
+        "paperOut": false,
+        "paused": false,
+        "headUp": false,
+        "ribbonOut": false,
+        "bufferFull": true,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": ["buffer-full"]
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c302c302c313234352c3030302c302c302c302c3030302c302c302c30030d0a023030302c302c312c302c302c302c302c302c30303030303030302c302c303030030d0a02303030302c30030d0a",
+      "expected": {
+        "paperOut": false,
+        "paused": false,
+        "headUp": true,
+        "ribbonOut": false,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": ["head-up"]
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c302c302c313234352c3030302c302c302c302c3030302c302c302c30030d0a023030302c302c302c312c302c302c302c302c30303030303030302c302c303030030d0a02303030302c30030d0a",
+      "expected": {
+        "paperOut": false,
+        "paused": false,
+        "headUp": false,
+        "ribbonOut": true,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": ["ribbon-out"]
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "023033302c302c302c313234352c3030302c302c302c302c3030302c302c302c30030d0a",
+      "expected": {
+        "paperOut": false,
+        "paused": false,
+        "headUp": false,
+        "ribbonOut": false,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": []
+      }
+    },
+    {
+      "fn": "parseHostStatus",
+      "rawHex": "3033302c302c302c313234352c3030302c302c302c302c3030302c302c302c300a3030302c302c312c312c302c302c302c302c30303030303030302c302c3030300a",
+      "expected": {
+        "paperOut": false,
+        "paused": false,
+        "headUp": true,
+        "ribbonOut": true,
+        "bufferFull": false,
+        "labelLengthDots": 1245,
+        "formatsInBuffer": 0,
+        "faults": ["head-up", "ribbon-out"]
+      }
+    },
+    {
+      "fn": "parseHi",
+      "rawHex": "025a50203435302d3230306470692d3230306470692c5a53502d30303232383241522c382c323130344b4203",
+      "expected": {
+        "model": "ZP 450-200dpi-200dpi",
+        "firmware": "ZSP-002282AR",
+        "dpi": 203,
+        "memoryKb": 2104
+      }
+    },
+    {
+      "fn": "parseHqes",
+      "rawHex": "024552524f52533a20302030303030303030302030303030303030300d0a5741524e494e47533a203020303030303030303020303030303030303003",
+      "expected": {
+        "errorCount": 0,
+        "warningCount": 0,
+        "flags": []
+      }
+    },
+    {
+      "fn": "parseHqes",
+      "rawHex": "024552524f52533a20312030303030303030302030303030303030350d0a5741524e494e47533a203120303030303030303020303030303030303403",
+      "expected": {
+        "errorCount": 1,
+        "warningCount": 1,
+        "flags": ["errors-present", "warnings-present"]
+      }
+    },
+    {
+      "fn": "parseSgd",
+      "rawHex": "223135220d0a",
+      "expected": "15"
+    },
+    {
+      "fn": "parseSgd",
+      "rawHex": "02225061636b2062656e636822030d0a",
+      "expected": "Pack bench"
+    }
+  ]
+}

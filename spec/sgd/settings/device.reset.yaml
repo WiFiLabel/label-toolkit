@@ -1,0 +1,12 @@
+key: "device.reset"
+type: "string"
+readOnly: false
+access: ["do"]
+zplEquivalent: "JR"
+risk: "destructive"
+summary: "Restarts the printer through an SGD do command."
+explain: "Device reset is an action, not a stored value. Sending do runs a restart similar to a power cycle. Jobs in memory are lost. Use it after a language or network change that will not apply until boot, not as a way to clear a paper fault. The setter refuses a normal set, because this key is not a setvar. The do helper also requires an explicit confirm flag. Wait for the printer to enumerate again, then read identification before the next label."
+symptoms: ["printer-offline"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-reset.html"

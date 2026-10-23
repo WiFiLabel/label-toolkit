@@ -1,0 +1,93 @@
+id: "HS"
+language: "zpl"
+command: "~HS"
+framing:
+  stx: 2
+  etx: 3
+  lineEnding: "crlf"
+  lineCount: 3
+lines:
+  - name: "interface"
+    fields:
+      - name: "communication"
+        index: 0
+        type: "string"
+      - name: "paperOut"
+        index: 1
+        type: "flag"
+      - name: "paused"
+        index: 2
+        type: "flag"
+      - name: "labelLengthDots"
+        index: 3
+        type: "number"
+      - name: "formatsInBuffer"
+        index: 4
+        type: "number"
+      - name: "bufferFull"
+        index: 5
+        type: "flag"
+      - name: "diagnosticMode"
+        index: 6
+        type: "flag"
+      - name: "partialFormat"
+        index: 7
+        type: "flag"
+      - name: "unused"
+        index: 8
+        type: "string"
+      - name: "corruptRam"
+        index: 9
+        type: "flag"
+      - name: "underTemperature"
+        index: 10
+        type: "flag"
+      - name: "overTemperature"
+        index: 11
+        type: "flag"
+  - name: "sensors"
+    fields:
+      - name: "functionSettings"
+        index: 0
+        type: "string"
+      - name: "unused"
+        index: 1
+        type: "string"
+      - name: "headUp"
+        index: 2
+        type: "flag"
+      - name: "ribbonOut"
+        index: 3
+        type: "flag"
+      - name: "transferMode"
+        index: 4
+        type: "flag"
+      - name: "printMode"
+        index: 5
+        type: "number"
+      - name: "printWidthMode"
+        index: 6
+        type: "number"
+      - name: "labelWaiting"
+        index: 7
+        type: "flag"
+      - name: "labelsRemaining"
+        index: 8
+        type: "number"
+      - name: "formatWhilePrinting"
+        index: 9
+        type: "flag"
+      - name: "imagesStored"
+        index: 10
+        type: "number"
+  - name: "memory"
+    fields:
+      - name: "password"
+        index: 0
+        type: "string"
+      - name: "staticRam"
+        index: 1
+        type: "flag"
+summary: "Three comma-separated status records wrapped in STX and ETX."
+explain: "Host status is three records. The first carries paper-out, pause, label length, format count, and buffer-full. The second carries head-open and ribbon-out. The third is a short memory record. Each record is wrapped in start-of-text (byte 2) and end-of-text (byte 3), then a carriage return and line feed. Printers sometimes omit a line or the control bytes. Flag fields use 1 for the fault and 0 for clear. This library maps those positions into named booleans and a fault list. The field order is a functional layout of the reply, written up in our own names. Do not treat a missing second record as a head-open fault."
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hs.html"

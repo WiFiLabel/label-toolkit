@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WiFiLabel/label-toolkit/spec/schema/status.schema.json",
+  "title": "Host status response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "language", "command", "framing", "lines", "summary", "explain", "sourceRef"],
+  "properties": {
+    "id": { "enum": ["HS", "HQES", "HI"] },
+    "language": { "const": "zpl" },
+    "command": { "type": "string" },
+    "framing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stx", "etx", "lineEnding"],
+      "properties": {
+        "stx": { "type": "integer" },
+        "etx": { "type": "integer" },
+        "lineEnding": { "enum": ["crlf", "lf", "none"] },
+        "lineCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "fields"],
+        "properties": {
+          "name": { "type": "string" },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "index", "type"],
+              "properties": {
+                "name": { "type": "string" },
+                "index": { "type": "integer", "minimum": 0 },
+                "type": { "enum": ["string", "number", "flag", "hex"] },
+                "values": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": { "type": "string", "minLength": 12 },
+    "explain": { "type": "string", "minLength": 40 },
+    "sourceRef": {
+      "type": "string",
+      "pattern": "^https://docs\\.zebra\\.com/"
+    }
+  }
+}

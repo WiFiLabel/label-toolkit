@@ -1,0 +1,21 @@
+id: "HQES"
+language: "zpl"
+prefix: "~"
+name: "Host Query Status"
+category: "status"
+syntax: "~HQES"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Asks for the current error and warning bit words."
+explain: "Host query with the ES parameter returns the printer's current error count, warning count, and the hex words that hold the flag bits. A zero error count with empty words means the printer is not reporting a fault. A non-zero count means something such as media, ribbon, or the head needs attention. Bit positions differ by firmware, so this library exposes the words and a simple present flag instead of pretending every bit has one name. The command is safe to poll. It does not clear the fault by itself. Fix the cause, then query again."
+symptoms: ["red-light", "paper-out", "ribbon-out"]
+examples:
+  - title: "Request error status"
+    code: "~HQES"
+seeAlso: ["HS", "HI"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hq.html"

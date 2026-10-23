@@ -1,0 +1,20 @@
+id: "zd420"
+displayName: "ZD420"
+languages: ["zpl"]
+dpi: [203, 300]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 6
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for ZD420 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "ZD420 4 inch desktop, ZPL, 203 or 300 dpi."
+explain: "The ZD420 is a 4 inch ZPL desktop that replaced a lot of GK and GX units on packing benches. Direct and transfer configurations both exist, so read the print method instead of assuming. 203 dpi width is about 832 dots. 300 dpi is wider in dots for the same physical label. This file stores the 203 dpi width and lists both resolutions. None of the numeric limits were measured on hardware for this tree. verified is false. Gap stock, tear-off, and a saved darkness are the usual shipping setup. Calibrate when the liner color changes."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

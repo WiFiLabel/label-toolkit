@@ -1,0 +1,26 @@
+id: "PM"
+language: "zpl"
+prefix: "^"
+name: "Print Mirror"
+category: "label-format"
+syntax: "^PMa"
+joiner: ""
+params:
+  - key: "a"
+    name: "mirror"
+    type: "enum"
+    values: ["Y", "N"]
+    default: "N"
+persist: null
+sgd: null
+risk: "caution"
+summary: "Mirrors the format for printing on the reverse side of clear stock."
+explain: "Print mirror flips the format horizontally so it reads correctly through clear media when the ink is on the back. Y enables the mirror for the format and N returns to a normal image. Leave it off for ordinary paper labels. A mirrored label looks like a backwards printer problem. Check this flag before recalibrating the sensor. Mirror is a format-time choice. It does not replace print orientation, which rotates rather than flips."
+symptoms: ["misaligned"]
+examples:
+  - title: "Turn mirroring off"
+    code: "^XA^PMN^XZ"
+seeAlso: ["PO"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-pm.html"

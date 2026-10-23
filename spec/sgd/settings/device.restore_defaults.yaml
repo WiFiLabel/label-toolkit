@@ -1,0 +1,12 @@
+key: "device.restore_defaults"
+type: "string"
+readOnly: false
+access: ["do"]
+zplEquivalent: "JUF"
+risk: "destructive"
+summary: "Restores factory defaults through an SGD do command."
+explain: "Restore defaults is the SGD action that puts saved setup back to the factory baseline. Darkness, size, and network options can all reset. Use it when the configuration is untrustworthy. It is not a media calibration and it will not fix a hardware fault. The library requires confirm before it will emit the do command. There is no setvar form. After it finishes, set media type, width, and darkness again and save the new baseline on purpose."
+symptoms: ["settings-lost"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-restore-defaults.html"

@@ -1,0 +1,28 @@
+id: "MD"
+language: "zpl"
+prefix: "^"
+name: "Media Darkness"
+category: "print-quality"
+syntax: "^MDa"
+joiner: ""
+params:
+  - key: "a"
+    name: "darkness adjustment"
+    type: "number"
+    range: [-30, 30]
+    step: 0.1
+    units: "relative"
+    default: 0
+persist: "^JUS"
+sgd: "media.darkness"
+risk: "caution"
+summary: "Nudges darkness up or down relative to the current base."
+explain: "Media darkness shifts the current burn level by a signed amount instead of replacing it. Positive values print darker and negative values print lighter. Each command is applied to the darkness already stored, so two small steps are not the same as asking for an absolute level of zero. Start with a change of one or two when a label is slightly light or slightly heavy, then print again before moving further. The useful range is about -30 to 30, and the head still clamps at the ends of the absolute scale. Save once the scan quality is stable."
+symptoms: ["faded-print", "too-dark-print"]
+examples:
+  - title: "Make print slightly darker"
+    code: "^XA^MD5^XZ"
+seeAlso: ["SD", "PR", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-md.html"

@@ -1,0 +1,33 @@
+id: "Q"
+language: "epl2"
+prefix: ""
+name: "Set Length"
+category: "media"
+syntax: "Qlll,ggg"
+joiner: ","
+params:
+  - key: "l"
+    name: "length"
+    type: "number"
+    range: [1, 32000]
+    step: 1
+    units: "dots"
+  - key: "g"
+    name: "gap"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+persist: null
+sgd: null
+risk: "caution"
+summary: "Sets the label length and gap size in dots for EPL2."
+explain: "The uppercase length command sets how long each label is and how large the gap between labels is, both in dots. A 6 inch label at 203 dpi uses 1218 as the length. The gap is the liner that shows between die-cut labels, often a few millimeters. Continuous stock uses a gap of zero. A non-zero gap on continuous stock makes the printer hunt and feed extra paper. This is not the lowercase width command. Set both, then print a single copy before saving a workflow around them."
+symptoms: ["skipping-labels", "short-feed"]
+examples:
+  - title: "6 inch label with a small gap"
+    code: "Q1218,24"
+seeAlso: ["q", "P"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

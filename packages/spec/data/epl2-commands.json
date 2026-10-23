@@ -1,0 +1,442 @@
+[
+  {
+    "id": "D",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Density",
+    "category": "print-quality",
+    "syntax": "Dn",
+    "joiner": "",
+    "params": [
+      {
+        "key": "n",
+        "name": "density",
+        "type": "number",
+        "range": [
+          0,
+          15
+        ],
+        "step": 1
+      }
+    ],
+    "persist": null,
+    "sgd": null,
+    "risk": "caution",
+    "summary": "Sets EPL2 darkness, often called density.",
+    "explain": "Density is the EPL2 darkness control. Larger numbers burn hotter, up to a small integer ceiling around 15 on classic desktop firmware. Raise it when print is gray. Lower it when the label looks blotchy or the head is leaving a shiny track. It is not the same scale as ZPL darkness, which runs to 30. Do not copy a ZPL number straight into this command. Change it one step at a time and print. The graphic wrapper does not set density for you.",
+    "symptoms": [
+      "faded-print",
+      "too-dark-print"
+    ],
+    "examples": [
+      {
+        "title": "Mid density",
+        "code": "D8"
+      }
+    ],
+    "seeAlso": [
+      "S",
+      "P"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "GW",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Graphic Write",
+    "category": "label-format",
+    "syntax": "GWx,y,w,h,data",
+    "joiner": ",",
+    "params": [
+      {
+        "key": "x",
+        "name": "x",
+        "type": "number",
+        "range": [
+          0,
+          32000
+        ],
+        "step": 1,
+        "units": "dots",
+        "default": 0
+      },
+      {
+        "key": "y",
+        "name": "y",
+        "type": "number",
+        "range": [
+          0,
+          32000
+        ],
+        "step": 1,
+        "units": "dots",
+        "default": 0
+      },
+      {
+        "key": "w",
+        "name": "bytes per row",
+        "type": "number",
+        "range": [
+          1,
+          2000
+        ],
+        "step": 1,
+        "units": "bytes"
+      },
+      {
+        "key": "h",
+        "name": "height",
+        "type": "number",
+        "range": [
+          1,
+          32000
+        ],
+        "step": 1,
+        "units": "dots"
+      }
+    ],
+    "persist": null,
+    "sgd": null,
+    "risk": "safe",
+    "summary": "Writes a raw 1-bit bitmap into the EPL image.",
+    "explain": "Graphic write places a packed bitmap at x and y. The width argument is bytes per row, not dots, and the height is in dot rows. The bitmap bytes follow the comma immediately, with no hex encoding. A row is padded to a whole byte, the same packing used for a ZPL graphic. The wrapper clears the buffer, writes the image at the origin, and prints one copy. It rejects a buffer shorter than width times height. Because the payload is binary, do not log it as text. A broken length clips the picture or eats the following print command.",
+    "symptoms": [
+      "clipped-label",
+      "blank-labels"
+    ],
+    "examples": [
+      {
+        "title": "Origin and size header",
+        "code": "GW0,0,1,8,"
+      }
+    ],
+    "seeAlso": [
+      "N",
+      "P"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "N",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Clear Buffer",
+    "category": "label-format",
+    "syntax": "N",
+    "joiner": "",
+    "params": [],
+    "persist": null,
+    "sgd": null,
+    "risk": "safe",
+    "summary": "Clears the EPL image buffer before a new label.",
+    "explain": "Clear buffer throws away the image currently built in an EPL2 printer so the next commands start from a blank page. Send it at the beginning of every label. Skipping it overlays the new art on whatever was left from the previous job. It does not calibrate, and it does not change width, length, speed, or darkness. The graphic wrapper emits this command before the bitmap so a stale image cannot show through.",
+    "symptoms": [
+      "ghost-image"
+    ],
+    "examples": [
+      {
+        "title": "Clear the buffer",
+        "code": "N"
+      }
+    ],
+    "seeAlso": [
+      "P",
+      "GW"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "P",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Print",
+    "category": "label-format",
+    "syntax": "Pn",
+    "joiner": "",
+    "params": [
+      {
+        "key": "n",
+        "name": "copies",
+        "type": "number",
+        "range": [
+          1,
+          9999
+        ],
+        "step": 1,
+        "units": "labels",
+        "default": 1
+      }
+    ],
+    "persist": null,
+    "sgd": null,
+    "risk": "safe",
+    "summary": "Prints the current EPL image one or more times.",
+    "explain": "Print sends the current EPL image to the head. The number is how many copies to make. A setup flow uses 1. Forgetting the command leaves the image in the buffer and nothing comes out of the printer. The graphic wrapper always prints a single copy after the bitmap so the host does not have to remember the trailer. Printing does not save settings. Width and density stay as they were for the next job until something changes them.",
+    "symptoms": [
+      "no-print"
+    ],
+    "examples": [
+      {
+        "title": "Print one label",
+        "code": "P1"
+      }
+    ],
+    "seeAlso": [
+      "N",
+      "GW"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "Q",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Set Length",
+    "category": "media",
+    "syntax": "Qlll,ggg",
+    "joiner": ",",
+    "params": [
+      {
+        "key": "l",
+        "name": "length",
+        "type": "number",
+        "range": [
+          1,
+          32000
+        ],
+        "step": 1,
+        "units": "dots"
+      },
+      {
+        "key": "g",
+        "name": "gap",
+        "type": "number",
+        "range": [
+          0,
+          32000
+        ],
+        "step": 1,
+        "units": "dots"
+      }
+    ],
+    "persist": null,
+    "sgd": null,
+    "risk": "caution",
+    "summary": "Sets the label length and gap size in dots for EPL2.",
+    "explain": "The uppercase length command sets how long each label is and how large the gap between labels is, both in dots. A 6 inch label at 203 dpi uses 1218 as the length. The gap is the liner that shows between die-cut labels, often a few millimeters. Continuous stock uses a gap of zero. A non-zero gap on continuous stock makes the printer hunt and feed extra paper. This is not the lowercase width command. Set both, then print a single copy before saving a workflow around them.",
+    "symptoms": [
+      "skipping-labels",
+      "short-feed"
+    ],
+    "examples": [
+      {
+        "title": "6 inch label with a small gap",
+        "code": "Q1218,24"
+      }
+    ],
+    "seeAlso": [
+      "q",
+      "P"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "S",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Speed",
+    "category": "print-quality",
+    "syntax": "Sn",
+    "joiner": "",
+    "params": [
+      {
+        "key": "n",
+        "name": "speed",
+        "type": "number",
+        "range": [
+          1,
+          6
+        ],
+        "step": 1,
+        "units": "ips"
+      }
+    ],
+    "persist": null,
+    "sgd": null,
+    "risk": "caution",
+    "summary": "Sets EPL2 print speed.",
+    "explain": "Speed selects how fast an EPL2 printer moves the media. Typical desktop values run from 1 to 6, and the mechanism clamps anything higher. Slow down when a barcode prints light at the current darkness. Speed and density trade against each other. The command is a single letter and an integer. It is not the ZPL print-rate command, and mixing the two languages in one job confuses the parser. Set speed before the print command for that label.",
+    "symptoms": [
+      "faded-print"
+    ],
+    "examples": [
+      {
+        "title": "Medium speed",
+        "code": "S3"
+      }
+    ],
+    "seeAlso": [
+      "D",
+      "P"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "UQ",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Configuration Query",
+    "category": "status",
+    "syntax": "UQ",
+    "joiner": "",
+    "params": [],
+    "persist": null,
+    "sgd": null,
+    "risk": "safe",
+    "summary": "Asks an EPL2 printer to report its configuration.",
+    "explain": "Configuration query asks an EPL2 printer to send its setup text back to the host. The reply is a human-readable listing, not the ZPL host-status frame. Use it to see width, length, and density when you cannot print a configuration label. The command does not clear the image buffer and does not start a calibration. Read until the channel is quiet, because the listing is more than one line. ZPL identification is a different command. Send this one only after the printer is actually in EPL mode.",
+    "symptoms": [
+      "unknown-model"
+    ],
+    "examples": [
+      {
+        "title": "Query configuration",
+        "code": "UQ"
+      }
+    ],
+    "seeAlso": [
+      "N"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "ZB",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Print Bottom First",
+    "category": "label-format",
+    "syntax": "ZB",
+    "joiner": "",
+    "params": [],
+    "persist": null,
+    "sgd": null,
+    "risk": "caution",
+    "summary": "Prints the label starting at the bottom.",
+    "explain": "Print bottom first reverses the EPL2 imaging direction so the bottom of the format comes out of the printer first. Use it when the stock path presents the label upside down relative to the artwork. The companion command prints top first. Direction is easy to confuse with a bad sensor. If the art is complete but rotated, change direction before you recalibrate. Send it once before the fields. It stays in effect until the other direction command replaces it.",
+    "symptoms": [
+      "misaligned"
+    ],
+    "examples": [
+      {
+        "title": "Bottom first",
+        "code": "ZB"
+      }
+    ],
+    "seeAlso": [
+      "ZT",
+      "P"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "ZT",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Print Top First",
+    "category": "label-format",
+    "syntax": "ZT",
+    "joiner": "",
+    "params": [],
+    "persist": null,
+    "sgd": null,
+    "risk": "caution",
+    "summary": "Prints the label starting at the top.",
+    "explain": "Print top first is the usual EPL2 direction: the top of the format leads out of the printer. Send it to undo a previous bottom-first command when labels suddenly look upside down after a shared printer was reconfigured. It does not move the image in dots. Width, length, and the graphic origin still decide placement. Pair it with a single test print. Direction changes are persistent on many older firmware builds until they are replaced.",
+    "symptoms": [
+      "misaligned"
+    ],
+    "examples": [
+      {
+        "title": "Top first",
+        "code": "ZT"
+      }
+    ],
+    "seeAlso": [
+      "ZB",
+      "P"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  },
+  {
+    "id": "q",
+    "language": "epl2",
+    "prefix": "",
+    "name": "Set Width",
+    "category": "media",
+    "syntax": "qnnn",
+    "joiner": "",
+    "params": [
+      {
+        "key": "n",
+        "name": "width",
+        "type": "number",
+        "range": [
+          1,
+          32000
+        ],
+        "step": 1,
+        "units": "dots"
+      }
+    ],
+    "persist": null,
+    "sgd": null,
+    "risk": "caution",
+    "summary": "Sets the label width in dots for EPL2.",
+    "explain": "The lowercase width command sets how many dots across the EPL2 page is. A 4 inch label at 203 dpi is 812 dots. Uppercase Q is a different command and sets length, not width. The two letters must not be swapped. A width wider than the head prints into the platen. A width that is too narrow clips the right side of a graphic. Send it after clearing the buffer and before the graphic or text. Older Eltron-style firmware keeps the value until it is changed again.",
+    "symptoms": [
+      "clipped-label"
+    ],
+    "examples": [
+      {
+        "title": "4 inch width at 203 dpi",
+        "code": "q812"
+      }
+    ],
+    "seeAlso": [
+      "Q",
+      "GW"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+  }
+]

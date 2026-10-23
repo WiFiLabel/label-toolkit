@@ -1,0 +1,21 @@
+id: "JUR"
+language: "zpl"
+prefix: "^"
+name: "Recall Settings"
+category: "memory"
+syntax: "^JUR"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Recalls the last saved configuration into the running session."
+explain: "Recall settings copies the last saved configuration back into the running session. It is how you throw away unsaved experiments without a power cycle. If you never saved, recall may restore an older baseline or the last successful save, not the values from five minutes ago. It does not factory-reset the printer. Factory reload is a different parameter on the same command family. Recall, then query host status or identification if you need to confirm the printer is idle before the next test label."
+symptoms: ["settings-lost"]
+examples:
+  - title: "Recall the saved configuration"
+    code: "^XA^JUR^XZ"
+seeAlso: ["JUS", "JUF"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ju.html"

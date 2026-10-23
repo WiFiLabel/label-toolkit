@@ -1,0 +1,26 @@
+id: "CI"
+language: "zpl"
+prefix: "^"
+name: "Change Encoding"
+category: "label-format"
+syntax: "^CIa"
+joiner: ""
+params:
+  - key: "a"
+    name: "encoding"
+    type: "number"
+    range: [0, 36]
+    step: 1
+persist: null
+sgd: null
+risk: "caution"
+summary: "Selects the character encoding used by later text fields."
+explain: "Change international encoding picks the code page for later field data. The classic single-byte pages are small integers. Newer firmware also accepts UTF-8 selectors in the same command. If accented characters print as the wrong glyph, the encoding does not match the bytes you sent. Set it near the start of the format, before the text. The test label helper stays on the printer default and only sends plain ASCII, so it does not depend on a particular page. Encoding does not translate stored settings. It only affects how field data in that format is decoded."
+symptoms: ["missing-text"]
+examples:
+  - title: "Select a single-byte page"
+    code: "^CI0"
+seeAlso: ["FD"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ci.html"

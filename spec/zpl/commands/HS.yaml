@@ -1,0 +1,21 @@
+id: "HS"
+language: "zpl"
+prefix: "~"
+name: "Host Status"
+category: "status"
+syntax: "~HS"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Asks the printer for a three-line host status snapshot."
+explain: "Host status returns a short machine-readable snapshot: paper, pause, label length, buffer flags, head and ribbon state, and a few counters. The reply is three comma-separated records, each wrapped in start-of-text and end-of-text bytes, then a carriage return and line feed. It does not change settings. Send it any time you need to know why a printer is idle or why a label did not move. Parsers in this library accept a partial reply. Missing lines leave the matching flags false instead of failing the whole read."
+symptoms: ["paper-out", "paused", "head-up", "ribbon-out"]
+examples:
+  - title: "Request host status"
+    code: "~HS"
+seeAlso: ["HI", "HQES"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hs.html"

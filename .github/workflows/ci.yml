@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm i --frozen-lockfile
+      - name: Codegen drift
+        run: pnpm gen && git diff --exit-code
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm build
+      - run: pnpm test
+
+  idf-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the ESP-IDF example
+        run: |
+          docker run --rm -v "$PWD":/work -w /work/c/examples/esp-idf-basic espressif/idf:release-v6.0 \
+            bash -lc 'idf.py set-target esp32p4 && idf.py build'

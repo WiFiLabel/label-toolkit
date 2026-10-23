@@ -1,0 +1,21 @@
+id: "JR"
+language: "zpl"
+prefix: "~"
+name: "Power On Reset"
+category: "reset"
+syntax: "~JR"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "destructive"
+summary: "Restarts the printer as if power had been cycled."
+explain: "Power-on reset reboots the printer. Jobs in the buffer are dropped and the mechanism restarts its power-up sequence. Use it when a save or a language change will not take effect until the next boot. Do not send it in the middle of a batch you still need. The library treats it as destructive and requires confirm. The printer will be quiet on USB for a few seconds and may renumber or re-enumerate. Wait until the head is ready, then query identification before sending another format."
+symptoms: ["printer-offline"]
+examples:
+  - title: "Restart the printer"
+    code: "~JR"
+seeAlso: ["JUS", "JUF"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-jr.html"

@@ -1,0 +1,38 @@
+{
+  "name": "@wifilabel/zpl",
+  "version": "0.1.0",
+  "description": "ZPL and SGD builders and status parsers for thermal label printers. Zero runtime dependencies outside the WiFiLabel spec packages.",
+  "license": "MIT",
+  "author": "WiFiLabel <hello@wifilabel.com>",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WiFiLabel/label-toolkit.git",
+    "directory": "packages/zpl"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "dependencies": {
+    "@wifilabel/printer-spec": "workspace:*",
+    "@wifilabel/transport": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "9.0.0",
+    "typescript": "5.9.3"
+  }
+}

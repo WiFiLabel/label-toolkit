@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WiFiLabel/label-toolkit/spec/schema/setting.schema.json",
+  "title": "SGD setting",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "key",
+    "type",
+    "readOnly",
+    "access",
+    "zplEquivalent",
+    "risk",
+    "summary",
+    "explain",
+    "symptoms",
+    "models",
+    "sourceRef"
+  ],
+  "properties": {
+    "key": { "type": "string", "pattern": "^[a-z][a-z0-9_.]*$" },
+    "type": { "enum": ["enum", "int", "string", "bool"] },
+    "values": { "type": "array", "items": { "type": "string" } },
+    "range": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "number" }
+    },
+    "readOnly": { "type": "boolean" },
+    "access": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["getvar", "setvar", "do"] }
+    },
+    "zplEquivalent": { "type": ["string", "null"] },
+    "units": { "type": "string" },
+    "risk": { "enum": ["safe", "caution", "destructive"] },
+    "summary": { "type": "string", "minLength": 12 },
+    "explain": { "type": "string", "minLength": 40 },
+    "symptoms": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all"],
+      "properties": {
+        "all": { "type": "boolean" },
+        "ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "sourceRef": {
+      "type": "string",
+      "pattern": "^https://docs\\.zebra\\.com/"
+    }
+  }
+}

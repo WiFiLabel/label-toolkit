@@ -1,0 +1,20 @@
+id: "gx420d"
+displayName: "GX420d"
+languages: ["zpl", "epl2"]
+dpi: [203, 300]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 6
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for GX420d is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "GK/GX-series desktop, direct thermal, ZPL with EPL available."
+explain: "The GX420d is a direct-thermal desktop from the G-series. It is a common 4 inch shipping printer and can run ZPL, with EPL still available on many firmware builds. 203 dpi is the usual head. 300 dpi units exist, so read identification before converting inches to dots. The 832 dot width is the 203 dpi figure. Direct thermal is the expected print method. Transfer mode with no ribbon prints blank labels. Speed, darkness, and USB product id in this profile are unverified. Confirm them from a configuration label before locking a workflow."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

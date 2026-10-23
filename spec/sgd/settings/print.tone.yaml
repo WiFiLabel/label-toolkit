@@ -1,0 +1,14 @@
+key: "print.tone"
+type: "int"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "SD"
+risk: "caution"
+summary: "Link-OS darkness, on the same idea as a 0 to 30 burn level."
+explain: "Print tone is the Link-OS name for darkness on many current firmware builds. It tracks the same kind of 0 to 30 scale as absolute darkness. Older desktops answer media.darkness instead, or as well. Read both if you are not sure which generation you have, and write the one that reads back. This library range-checks 0 to 30. Confirm the live printer before treating a tenth as valid. Tone does not select ribbon versus direct thermal. Set the print method separately so a darkness change is not hiding the wrong media type."
+symptoms: ["faded-print", "too-dark-print"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-print-tone.html"
+range: [0, 30]
+units: "absolute"

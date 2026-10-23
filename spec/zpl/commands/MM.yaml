@@ -1,0 +1,26 @@
+id: "MM"
+language: "zpl"
+prefix: "^"
+name: "Print Mode"
+category: "media"
+syntax: "^MMa"
+joiner: ""
+params:
+  - key: "a"
+    name: "mode"
+    type: "enum"
+    values: ["T", "P", "R", "A", "C", "D"]
+    default: "T"
+persist: "^JUS"
+sgd: "media.printmode"
+risk: "caution"
+summary: "Selects tear-off, peel, rewind, applicator, or cutter handling."
+explain: "Print mode tells the printer what to do with the label after it is imaged. T is tear-off, P is peel, R is rewind, A is applicator, C is cutter, and D is a delayed cut. A desktop shipping printer with no peeler should stay on tear-off. Peel mode on a machine with no take-up spindle will pause or present the label in a way that looks like a jam. Cutter modes should be used only when a cutter is fitted. Sending them to a plain desktop does not add a cutter. Save after the present position looks right. Tear-off position is a separate adjustment from this mode."
+symptoms: ["misaligned", "not-presenting"]
+examples:
+  - title: "Tear-off present"
+    code: "^XA^MMT^XZ"
+seeAlso: ["TA", "MN", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-mm.html"

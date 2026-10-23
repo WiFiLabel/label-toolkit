@@ -1,0 +1,26 @@
+id: "PO"
+language: "zpl"
+prefix: "^"
+name: "Print Orientation"
+category: "label-format"
+syntax: "^POa"
+joiner: ""
+params:
+  - key: "a"
+    name: "orientation"
+    type: "enum"
+    values: ["N", "I"]
+    default: "N"
+persist: "^JUS"
+sgd: null
+risk: "caution"
+summary: "Prints the format upright or rotated 180 degrees."
+explain: "Print orientation turns the whole format. N is the normal direction and I rotates it 180 degrees. Use the inverted setting when the printer is loaded so the leading edge is the bottom of the artwork, which is common on some peel and rewind paths. Inversion is not a substitute for fixing a shifted image. If only one field is upside down, the field itself has its own rotation. Confirm with a label that has a single asymmetric mark, then save if every job should share that orientation."
+symptoms: ["misaligned"]
+examples:
+  - title: "Invert the format"
+    code: "^XA^POI^XZ"
+seeAlso: ["LH", "LT"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-po.html"

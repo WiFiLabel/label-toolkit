@@ -1,0 +1,20 @@
+id: "zd410"
+displayName: "ZD410"
+languages: ["zpl"]
+dpi: [203, 300]
+maxWidthDots: 448
+speed:
+  min: 2
+  max: 6
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for ZD410 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "Narrow ZD410 desktop, about 2 inches wide, ZPL."
+explain: "The ZD410 is a narrow desktop, about 2.2 inches of print width, not a 4 inch shipping printer. At 203 dpi that is roughly 448 dots. Do not send an 812 dot shipping label to it. The image will clip. This profile exists so a tool can refuse a 4 inch page. 203 and 300 dpi heads were both offered. Read the resolution key. The width here is the 203 dpi estimate and is unverified. Language is ZPL. USB product ids are empty until someone reads a real device."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

@@ -1,0 +1,21 @@
+id: "WC"
+language: "zpl"
+prefix: "~"
+name: "Print Configuration"
+category: "status"
+syntax: "~WC"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Prints the configuration label."
+explain: "Print configuration feeds one label that lists the running setup: darkness, print mode, network, and firmware, among other lines. It is the fastest way to see what the printer believes without a parser. It does consume a label, so do not send it in a tight loop. The printed page is for a person. Host status and identification are the machine-readable equivalents when a program needs the same facts. If the configuration label itself is blank, fix media type and darkness before trusting any value on it."
+symptoms: ["blank-labels"]
+examples:
+  - title: "Print the config label"
+    code: "~WC"
+seeAlso: ["HH", "HI", "HS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-wc.html"

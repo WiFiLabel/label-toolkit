@@ -1,0 +1,12 @@
+key: "device.friendly_name"
+type: "string"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: null
+risk: "safe"
+summary: "Reads or sets the name the printer shows to people and discovery tools."
+explain: "Friendly name is a short human label stored on the printer, such as the bench it sits on. It is not the serial number and not the model string. Get returns a quoted string. An empty reply or a question mark means the printer has no custom name. Set replaces the name. Avoid quotes and control characters. The helper rejects them so the SGD frame cannot be broken. Renaming does not change how labels print. It only helps you tell two printers apart on a shared bench."
+symptoms: []
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-friendly-name.html"

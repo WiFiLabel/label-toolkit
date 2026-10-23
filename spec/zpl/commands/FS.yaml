@@ -1,0 +1,21 @@
+id: "FS"
+language: "zpl"
+prefix: "^"
+name: "Field Separator"
+category: "label-format"
+syntax: "^FS"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Ends the current field."
+explain: "Field separator closes the field that was opened by an origin and data command. Without it, the next command can be swallowed as more data. Every field in a format should end with a separator before the next origin or the format end. The separator does not print anything by itself and does not change printer settings. The graphic field helper emits a separator after the hex image so the format can end cleanly."
+symptoms: ["missing-text"]
+examples:
+  - title: "Close the field"
+    code: "^FS"
+seeAlso: ["FD", "FO"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-fs.html"

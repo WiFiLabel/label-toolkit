@@ -1,0 +1,35 @@
+id: "LH"
+language: "zpl"
+prefix: "^"
+name: "Label Home"
+category: "label-format"
+syntax: "^LHx,y"
+joiner: ","
+params:
+  - key: "x"
+    name: "x origin"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+    default: 0
+  - key: "y"
+    name: "y origin"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+    default: 0
+persist: "^JUS"
+sgd: null
+risk: "caution"
+summary: "Moves the origin used by later fields."
+explain: "Label home sets the x and y origin that later field positions are measured from. It shifts a whole format without editing every coordinate. Positive x moves content to the right. Positive y moves content down the label, away from the leading edge on a normal orientation. Use a small home shift when every field is offset by the same amount. Use label top or left shift when the physical stop position is wrong but the artwork is already centered. A large home value can push fields off the printable area, which looks like missing text. Save only if you want the origin to stick for later jobs."
+symptoms: ["misaligned", "clipped-label"]
+examples:
+  - title: "Origin 10 dots in and 10 down"
+    code: "^XA^LH10,10^XZ"
+seeAlso: ["LT", "LS", "FO"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-lh.html"

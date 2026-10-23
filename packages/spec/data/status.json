@@ -1,0 +1,255 @@
+[
+  {
+    "id": "HI",
+    "language": "zpl",
+    "command": "~HI",
+    "framing": {
+      "stx": 2,
+      "etx": 3,
+      "lineEnding": "crlf",
+      "lineCount": 1
+    },
+    "lines": [
+      {
+        "name": "identity",
+        "fields": [
+          {
+            "name": "model",
+            "index": 0,
+            "type": "string"
+          },
+          {
+            "name": "firmware",
+            "index": 1,
+            "type": "string"
+          },
+          {
+            "name": "dotsPerMm",
+            "index": 2,
+            "type": "number"
+          },
+          {
+            "name": "memory",
+            "index": 3,
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "summary": "One record with model, firmware, dots per millimeter, and memory.",
+    "explain": "Host identification is a single comma-separated record. The first field is the model text, the second is firmware or a configuration id, the third is dots per millimeter, and the fourth is memory. Map 8 dots per millimeter to 203 dpi, 12 to 300 dpi, and 24 to 600 dpi. If the third field is already 203 or higher, treat it as dpi directly. The memory field usually ends in KB. Strip that suffix before converting to a number. The record may be wrapped in start-of-text and end-of-text. A parser should still accept a bare line.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hi.html"
+  },
+  {
+    "id": "HQES",
+    "language": "zpl",
+    "command": "~HQES",
+    "framing": {
+      "stx": 2,
+      "etx": 3,
+      "lineEnding": "crlf",
+      "lineCount": 2
+    },
+    "lines": [
+      {
+        "name": "errors",
+        "fields": [
+          {
+            "name": "errorCount",
+            "index": 0,
+            "type": "number"
+          },
+          {
+            "name": "errorWord0",
+            "index": 1,
+            "type": "hex"
+          },
+          {
+            "name": "errorWord1",
+            "index": 2,
+            "type": "hex"
+          }
+        ]
+      },
+      {
+        "name": "warnings",
+        "fields": [
+          {
+            "name": "warningCount",
+            "index": 0,
+            "type": "number"
+          },
+          {
+            "name": "warningWord0",
+            "index": 1,
+            "type": "hex"
+          },
+          {
+            "name": "warningWord1",
+            "index": 2,
+            "type": "hex"
+          }
+        ]
+      }
+    ],
+    "summary": "Error and warning counts plus two hex words each.",
+    "explain": "The ES host query returns an errors line and a warnings line. Each line has a count and two hexadecimal words. A count of zero with empty words means that group is clear. A non-zero count means the printer wants attention, but the meaning of each bit depends on firmware. This library surfaces the words and a simple errors-present or warnings-present flag. It does not assign a name to every bit. The text is often wrapped in the same start and end bytes as host status. Parsers should tolerate extra labels such as PRINTER STATUS around the two lines.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hq.html"
+  },
+  {
+    "id": "HS",
+    "language": "zpl",
+    "command": "~HS",
+    "framing": {
+      "stx": 2,
+      "etx": 3,
+      "lineEnding": "crlf",
+      "lineCount": 3
+    },
+    "lines": [
+      {
+        "name": "interface",
+        "fields": [
+          {
+            "name": "communication",
+            "index": 0,
+            "type": "string"
+          },
+          {
+            "name": "paperOut",
+            "index": 1,
+            "type": "flag"
+          },
+          {
+            "name": "paused",
+            "index": 2,
+            "type": "flag"
+          },
+          {
+            "name": "labelLengthDots",
+            "index": 3,
+            "type": "number"
+          },
+          {
+            "name": "formatsInBuffer",
+            "index": 4,
+            "type": "number"
+          },
+          {
+            "name": "bufferFull",
+            "index": 5,
+            "type": "flag"
+          },
+          {
+            "name": "diagnosticMode",
+            "index": 6,
+            "type": "flag"
+          },
+          {
+            "name": "partialFormat",
+            "index": 7,
+            "type": "flag"
+          },
+          {
+            "name": "unused",
+            "index": 8,
+            "type": "string"
+          },
+          {
+            "name": "corruptRam",
+            "index": 9,
+            "type": "flag"
+          },
+          {
+            "name": "underTemperature",
+            "index": 10,
+            "type": "flag"
+          },
+          {
+            "name": "overTemperature",
+            "index": 11,
+            "type": "flag"
+          }
+        ]
+      },
+      {
+        "name": "sensors",
+        "fields": [
+          {
+            "name": "functionSettings",
+            "index": 0,
+            "type": "string"
+          },
+          {
+            "name": "unused",
+            "index": 1,
+            "type": "string"
+          },
+          {
+            "name": "headUp",
+            "index": 2,
+            "type": "flag"
+          },
+          {
+            "name": "ribbonOut",
+            "index": 3,
+            "type": "flag"
+          },
+          {
+            "name": "transferMode",
+            "index": 4,
+            "type": "flag"
+          },
+          {
+            "name": "printMode",
+            "index": 5,
+            "type": "number"
+          },
+          {
+            "name": "printWidthMode",
+            "index": 6,
+            "type": "number"
+          },
+          {
+            "name": "labelWaiting",
+            "index": 7,
+            "type": "flag"
+          },
+          {
+            "name": "labelsRemaining",
+            "index": 8,
+            "type": "number"
+          },
+          {
+            "name": "formatWhilePrinting",
+            "index": 9,
+            "type": "flag"
+          },
+          {
+            "name": "imagesStored",
+            "index": 10,
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "name": "memory",
+        "fields": [
+          {
+            "name": "password",
+            "index": 0,
+            "type": "string"
+          },
+          {
+            "name": "staticRam",
+            "index": 1,
+            "type": "flag"
+          }
+        ]
+      }
+    ],
+    "summary": "Three comma-separated status records wrapped in STX and ETX.",
+    "explain": "Host status is three records. The first carries paper-out, pause, label length, format count, and buffer-full. The second carries head-open and ribbon-out. The third is a short memory record. Each record is wrapped in start-of-text (byte 2) and end-of-text (byte 3), then a carriage return and line feed. Printers sometimes omit a line or the control bytes. Flag fields use 1 for the fault and 0 for clear. This library maps those positions into named booleans and a fault list. The field order is a functional layout of the reply, written up in our own names. Do not treat a missing second record as a head-open fault.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hs.html"
+  }
+]

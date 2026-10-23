@@ -1,0 +1,14 @@
+key: "media.darkness"
+type: "int"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "SD"
+risk: "caution"
+summary: "Gets or sets absolute darkness on the 0 to 30 scale."
+explain: "Media darkness is the settings key many desktop firmware builds use for the same 0 to 30 burn level as the absolute darkness command. A dedicated HTML page for this exact key was not present beside the newer tone setting, so the source link is the absolute darkness command that defines the scale. Values outside 0 to 30 are rejected here. Tenths may be accepted by some firmware. This checker uses whole numbers. Raise it for pale barcodes and lower it when the image blooms. Save the ZPL configuration if the model forgets the value at power off."
+symptoms: ["faded-print", "too-dark-print"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-sd.html"
+range: [0, 30]
+units: "absolute"

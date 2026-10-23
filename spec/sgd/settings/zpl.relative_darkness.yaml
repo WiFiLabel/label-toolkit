@@ -1,0 +1,14 @@
+key: "zpl.relative_darkness"
+type: "int"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "MD"
+risk: "caution"
+summary: "Relative darkness in tenths, matching the relative ZPL command."
+explain: "Relative darkness is the SGD cousin of the relative media-darkness command. The stored integer is in tenths: 10 means one darkness step, and the documented window runs from -300 to 300. It adds to the current base rather than replacing it. Sending it twice applies two adjustments. Desktop models often keep the result. Industrial models may not. Read it back after a set, then save if your workflow needs it after power loss. This library checks the -300 to 300 window and does not scale the number for you. Pass tenths, not a 0 to 30 absolute level."
+symptoms: ["faded-print", "too-dark-print"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-zpl-relative-darkness.html"
+range: [-300, 300]
+units: "tenths"

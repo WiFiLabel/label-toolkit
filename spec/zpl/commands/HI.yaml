@@ -1,0 +1,21 @@
+id: "HI"
+language: "zpl"
+prefix: "~"
+name: "Host Identification"
+category: "status"
+syntax: "~HI"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Asks the printer to identify model, firmware, resolution, and memory."
+explain: "Host identification returns one comma-separated record: a model string, a firmware or configuration id, dots per millimeter, and installed memory. Eight dots per millimeter is 203 dpi, twelve is 300 dpi, and twenty-four is 600 dpi. The memory field usually ends in KB. The reply is often wrapped in the same start-of-text and end-of-text bytes as host status. Strip those before splitting on commas. Use it at connect time so width math and feature flags follow the head that is actually attached. The command does not change settings."
+symptoms: ["unknown-model"]
+examples:
+  - title: "Identify the printer"
+    code: "~HI"
+seeAlso: ["HS", "HQES"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hi.html"

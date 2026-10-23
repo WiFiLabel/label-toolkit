@@ -1,0 +1,21 @@
+id: "JUN"
+language: "zpl"
+prefix: "^"
+name: "Network Defaults"
+category: "reset"
+syntax: "^JUN"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "destructive"
+summary: "Restores network settings to the factory network defaults."
+explain: "Network defaults reloads the factory network configuration. IP address, wireless profiles, and related print-server options can return to the shipping state. Use it when a printer is stranded on an old static address and a normal save will not clear it. It is the wrong tool for a darkness or media problem. Treat it as destructive. The library will not emit it unless confirm is set, and you should expect to rejoin the printer to the network afterwards. Media calibration and label size are left alone on many models, but do not assume that until you print a known label."
+symptoms: ["network-lost"]
+examples:
+  - title: "Reload network defaults"
+    code: "^XA^JUN^XZ"
+seeAlso: ["JUF", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ju.html"

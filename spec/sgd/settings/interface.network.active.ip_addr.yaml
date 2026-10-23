@@ -1,0 +1,12 @@
+key: "interface.network.active.ip_addr"
+type: "string"
+readOnly: true
+access: ["getvar"]
+zplEquivalent: null
+risk: "safe"
+summary: "Reads the IP address of the active network interface."
+explain: "Active IP address returns the address the printer is using right now on whichever interface is up. It is a get-only view, not the place to configure a static address. A typical reply is a dotted IPv4 string. No address, or zeros, means the interface has not obtained one. The library rejects a set so a tool cannot accidentally write this key. Change address through the documented configurable IP keys if you must. Pair the value with identification when you file a printer report, and do not treat it as stable across DHCP renewals."
+symptoms: ["network-lost"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/r-sgd-wireless-sgd-wireless-commands/r-sgd-interface-network-active-ip-addr.html"

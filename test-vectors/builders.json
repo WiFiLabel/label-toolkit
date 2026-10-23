@@ -1,0 +1,61 @@
+{
+  "cases": [
+    { "fn": "setDarkness", "args": [15], "expected": "~SD15\n" },
+    { "fn": "setDarkness", "args": [31], "error": "range" },
+    { "fn": "mediaDarkness", "args": [-3], "expected": "^MD-3\n" },
+    { "fn": "printSpeed", "args": [4], "expected": "^PR4\n" },
+    { "fn": "mediaType", "args": ["direct"], "expected": "^MTD\n" },
+    { "fn": "mediaType", "args": ["transfer"], "expected": "^MTT\n" },
+    { "fn": "mediaTracking", "args": ["gap"], "expected": "^MNY\n" },
+    { "fn": "mediaTracking", "args": ["continuous"], "expected": "^MNN\n" },
+    { "fn": "mediaTracking", "args": ["mark"], "expected": "^MNM\n" },
+    { "fn": "printWidth", "args": [812], "expected": "^PW812\n" },
+    { "fn": "labelLength", "args": [1218], "expected": "^LL1218\n" },
+    { "fn": "calibrate", "args": [], "expected": "~JC\n" },
+    { "fn": "saveSettings", "args": [], "expected": "^XA^JUS^XZ\n" },
+    { "fn": "factoryReset", "args": [{ "confirm": true }], "expected": "^XA^JUF^XZ\n" },
+    { "fn": "factoryReset", "args": [{ "confirm": false }], "error": "confirm" },
+    { "fn": "tearOff", "args": [120], "expected": "~TA120\n" },
+    { "fn": "tearOff", "args": [-60], "expected": "~TA-060\n" },
+    { "fn": "tearOff", "args": [5], "expected": "~TA005\n" },
+    { "fn": "tearOff", "args": [200], "error": "range" },
+    {
+      "fn": "setTearOff",
+      "args": [120, true],
+      "expected": "^XA^MMT^MNY^XZ\n~TA120\n^XA^JUS^XZ\n"
+    },
+    {
+      "fn": "setTearOff",
+      "args": [-60, false],
+      "expected": "^XA^MMT^MNY^XZ\n~TA-060\n"
+    },
+    {
+      "fn": "sgdGet",
+      "args": ["media.darkness"],
+      "expected": "! U1 getvar \"media.darkness\"\r\n"
+    },
+    {
+      "fn": "sgdSet",
+      "args": ["media.darkness", "15"],
+      "expected": "! U1 setvar \"media.darkness\" \"15\"\r\n"
+    },
+    {
+      "fn": "sgdSet",
+      "args": ["media.width_sense.enable", "on"],
+      "expected": "! U1 setvar \"media.width_sense.enable\" \"on\"\r\n"
+    },
+    { "fn": "sgdSet", "args": ["media.darkness", "99"], "error": "range" },
+    {
+      "fn": "sgdDo",
+      "args": ["device.reset", "", { "confirm": true }],
+      "expected": "! U1 do \"device.reset\" \"\"\r\n"
+    },
+    { "fn": "sgdDo", "args": ["device.reset", ""], "error": "confirm" },
+    {
+      "fn": "testLabel",
+      "args": [{ "widthDots": 812, "heightDots": 1218, "text": "HELLO" }],
+      "expected": "^XA\n^PW812\n^LL1218\n^FO20,20^A0N,36,36^FDHELLO^FS\n^XZ\n"
+    },
+    { "fn": "calibrateFlow", "args": [], "expected": "~JC\n^XA^JUS^XZ\n" }
+  ]
+}

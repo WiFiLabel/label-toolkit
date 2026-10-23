@@ -1,0 +1,6 @@
+packages:
+  - "packages/*"
+  - "codegen"
+
+allowBuilds:
+  esbuild: true

@@ -1,0 +1,13 @@
+key: "media.sense_mode"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "MN"
+risk: "caution"
+summary: "Selects gap, bar, or continuous sensing on firmware that exposes this key."
+explain: "Sense mode picks how the media sensor indexes the stock. Gap follows the liner between labels, bar follows a black mark, and continuous does not index. Newer firmware often uses device.sensor_select with transmissive and reflective instead. If this key is unknown, set ezpl.media_type and the sensor select key. The source link is the ZPL tracking command, which is the format-language equivalent of this choice. Change sensing only when the stock actually changed, then calibrate. A mode that does not match the roll is the usual cause of skipped labels."
+symptoms: ["skipping-labels", "blank-labels"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-mn.html"
+values: ["gap", "bar", "continuous"]

@@ -1,0 +1,13 @@
+key: "media.width_sense.enable"
+type: "bool"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: null
+risk: "caution"
+summary: "Turns automatic label-width sensing on or off."
+explain: "Width sense lets the printer measure the stock width instead of trusting only the stored print width. The values used here are on and off. A dedicated command page for this key was not in the SGD index we checked, so the source link is the sensor-type page that describes how desktop sensors see media. Leave sensing off when you set an explicit width that you trust. Turn it on only if the model documents automatic width and the stock has a clear edge. A bad automatic width clips the label or burns the platen. Read the key back after a set."
+symptoms: ["clipped-label"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop/zd421-and-zd621-desktop-printers-user-guide/color-touch-display-and-controls/print-menu/print-sensors-sensor-type.html"
+values: ["on", "off"]

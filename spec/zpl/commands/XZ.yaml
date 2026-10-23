@@ -1,0 +1,21 @@
+id: "XZ"
+language: "zpl"
+prefix: "^"
+name: "End Format"
+category: "label-format"
+syntax: "^XZ"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Closes a label format and releases it to print."
+explain: "End format closes the label description opened by start format. The printer then images and prints according to the quantity and media settings. Leaving it off parks the format in the buffer, which looks like a printer that accepted bytes and did nothing. Send it once per label description. A second end without a new start does not print another copy. Use print quantity for repeats. Configuration saves are often wrapped in their own tiny format so they are committed even when no artwork is printed."
+symptoms: ["no-print"]
+examples:
+  - title: "Close a format"
+    code: "^XZ"
+seeAlso: ["XA", "PQ"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-xz.html"

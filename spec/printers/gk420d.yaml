@@ -1,0 +1,20 @@
+id: "gk420d"
+displayName: "GK420d"
+languages: ["zpl", "epl2"]
+dpi: [203, 300]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 5
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for GK420d is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "GK420d direct-thermal desktop, ZPL, about 4 inches wide."
+explain: "The GK420d is the direct-thermal GK-series desktop. Shipping workflows use it like the GX420d: ZPL, gap labels, tear-off, 203 dpi unless identification says otherwise. The 300 dpi option is listed because both heads were sold. Max width dots in this file is the 203 dpi number, 832, and must be scaled for a 300 dpi head. Top speed is written as 5 ips as a conservative desktop guess. verified is false until a unit is measured. Set direct thermal explicitly. A unit left in transfer mode will not mark coated stock."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

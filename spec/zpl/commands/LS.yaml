@@ -1,0 +1,28 @@
+id: "LS"
+language: "zpl"
+prefix: "^"
+name: "Label Shift"
+category: "media"
+syntax: "^LSa"
+joiner: ""
+params:
+  - key: "a"
+    name: "left shift"
+    type: "number"
+    range: [-9999, 9999]
+    step: 1
+    units: "dots"
+    default: 0
+persist: "^JUS"
+sgd: null
+risk: "caution"
+summary: "Shifts the image left or right."
+explain: "Label shift moves the image sideways in dots. Positive values move it toward the center of a typical left-aligned head, and negative values move it back toward the left edge. Use it when the label is the right length and the right width, but the whole picture sits too far left or right. A shift that pushes ink past the stock edge wastes the head on the platen. Check a full-width frame before saving a large number. This does not change print width. Set the width to the stock, then use shift only for the leftover centering error."
+symptoms: ["misaligned", "clipped-label"]
+examples:
+  - title: "Shift right by 12 dots"
+    code: "^XA^LS12^XZ"
+seeAlso: ["LT", "PW", "LH", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ls.html"

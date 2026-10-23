@@ -1,0 +1,21 @@
+id: "XA"
+language: "zpl"
+prefix: "^"
+name: "Start Format"
+category: "label-format"
+syntax: "^XA"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Opens a label format."
+explain: "Start format marks the beginning of a label description. Field commands, sizes, and the print quantity belong after it and before the matching end. Most setup commands are also accepted inside the format. Immediate tilde commands such as calibration can stand alone outside it. A missing start causes the printer to ignore or mis-group the following fields. Always pair it with an end format. The builders that print a test label include both ends so a caller cannot forget the wrapper."
+symptoms: []
+examples:
+  - title: "Open a format"
+    code: "^XA"
+seeAlso: ["XZ", "FO", "FD"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-xa.html"

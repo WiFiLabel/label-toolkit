@@ -1,0 +1,21 @@
+id: "JUS"
+language: "zpl"
+prefix: "^"
+name: "Save Settings"
+category: "memory"
+syntax: "^JUS"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Writes the current configuration so it survives power off."
+explain: "Save settings stores the running configuration into nonvolatile memory. Darkness, width, tracking, tear-off, and similar setup values are the usual reason to send it. Send it after a setup session, not after every test nudge, so a bad experiment is easier to abandon by cycling power. The command is normally wrapped in a format start and end. It does not print a label by itself. Saving does not factory-reset the printer. If you need the original defaults, use the factory reload command instead, and only on purpose."
+symptoms: ["settings-lost"]
+examples:
+  - title: "Persist the current setup"
+    code: "^XA^JUS^XZ"
+seeAlso: ["JUF", "JUR", "SD", "TA"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ju.html"

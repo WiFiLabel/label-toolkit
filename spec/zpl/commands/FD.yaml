@@ -1,0 +1,24 @@
+id: "FD"
+language: "zpl"
+prefix: "^"
+name: "Field Data"
+category: "label-format"
+syntax: "^FDa"
+joiner: ""
+params:
+  - key: "a"
+    name: "data"
+    type: "string"
+persist: null
+sgd: null
+risk: "safe"
+summary: "Supplies the text or data for the current field."
+explain: "Field data is the payload of the current field. For a text field it is the characters to print. Barcode fields use the same command for their contents. The data runs until the field separator. A caret or tilde inside the data can be read as a new command, so the test label helper rejects those characters. An empty data command produces an empty field, which looks like a missing line rather than a printer fault. Put the origin and any font command before the data, and the separator immediately after it."
+symptoms: ["missing-text"]
+examples:
+  - title: "Text field"
+    code: "^FDTEST"
+seeAlso: ["FO", "FS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-fd.html"

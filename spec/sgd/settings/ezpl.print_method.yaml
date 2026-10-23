@@ -1,0 +1,13 @@
+key: "ezpl.print_method"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "MT"
+risk: "caution"
+summary: "Selects direct thermal or thermal transfer."
+explain: "Print method chooses direct thermal or thermal transfer. The tokens used here are direct thermal and thermal trans, which is the short form many firmware builds store. Direct thermal needs coated stock and no ribbon. Transfer needs a ribbon. The mismatch is a blank label with a healthy status. If a set is rejected, get the key and copy the printer's own spelling, then widen this list in a spec change. Method is independent from darkness. A darker setting will not make transfer mode mark direct stock."
+symptoms: ["blank-labels", "ribbon-wrinkle"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-print-method.html"
+values: ["direct thermal", "thermal trans"]

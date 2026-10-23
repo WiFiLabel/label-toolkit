@@ -1,0 +1,21 @@
+id: "JG"
+language: "zpl"
+prefix: "~"
+name: "Sensor Profile"
+category: "calibration"
+syntax: "~JG"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Prints a sensor profile so you can see gap and mark levels."
+explain: "The sensor profile command prints a graph of what the media sensor sees along the web. Peaks and valleys show the gap or black mark versus the label face. Use it when calibration finishes but labels still skip. A flat graph means the sensor is not seeing a difference, often because the stock is loaded wrong or the mode is continuous. The printer consumes a label to draw the graph. It does not by itself change the saved threshold. Read the shape, adjust tracking or the sensor position, then calibrate again. Save only after a normal label stops on the gap."
+symptoms: ["skipping-labels", "blank-labels"]
+examples:
+  - title: "Print a sensor graph"
+    code: "~JG"
+seeAlso: ["JC", "MN"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-jg.html"

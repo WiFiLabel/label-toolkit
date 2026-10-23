@@ -1,0 +1,47 @@
+id: "GW"
+language: "epl2"
+prefix: ""
+name: "Graphic Write"
+category: "label-format"
+syntax: "GWx,y,w,h,data"
+joiner: ","
+params:
+  - key: "x"
+    name: "x"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+    default: 0
+  - key: "y"
+    name: "y"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+    default: 0
+  - key: "w"
+    name: "bytes per row"
+    type: "number"
+    range: [1, 2000]
+    step: 1
+    units: "bytes"
+  - key: "h"
+    name: "height"
+    type: "number"
+    range: [1, 32000]
+    step: 1
+    units: "dots"
+persist: null
+sgd: null
+risk: "safe"
+summary: "Writes a raw 1-bit bitmap into the EPL image."
+explain: "Graphic write places a packed bitmap at x and y. The width argument is bytes per row, not dots, and the height is in dot rows. The bitmap bytes follow the comma immediately, with no hex encoding. A row is padded to a whole byte, the same packing used for a ZPL graphic. The wrapper clears the buffer, writes the image at the origin, and prints one copy. It rejects a buffer shorter than width times height. Because the payload is binary, do not log it as text. A broken length clips the picture or eats the following print command."
+symptoms: ["clipped-label", "blank-labels"]
+examples:
+  - title: "Origin and size header"
+    code: "GW0,0,1,8,"
+seeAlso: ["N", "P"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

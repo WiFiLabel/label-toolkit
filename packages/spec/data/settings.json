@@ -1,0 +1,529 @@
+[
+  {
+    "key": "appl.name",
+    "type": "string",
+    "readOnly": true,
+    "access": [
+      "getvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "safe",
+    "summary": "Reads the application firmware name.",
+    "explain": "Application name reports the firmware application currently running, which is how you tell a ZPL build from an unexpected download. The value is read-only. It changes when firmware is updated, not when you save darkness or width. Pair it with host identification. One gives a model line and the other gives the application package name. If a feature in this spec is missing on the printer, quote this string in a bug report along with the model.",
+    "symptoms": [
+      "unknown-model"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-appl-name.html"
+  },
+  {
+    "key": "device.friendly_name",
+    "type": "string",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "safe",
+    "summary": "Reads or sets the name the printer shows to people and discovery tools.",
+    "explain": "Friendly name is a short human label stored on the printer, such as the bench it sits on. It is not the serial number and not the model string. Get returns a quoted string. An empty reply or a question mark means the printer has no custom name. Set replaces the name. Avoid quotes and control characters. The helper rejects them so the SGD frame cannot be broken. Renaming does not change how labels print. It only helps you tell two printers apart on a shared bench.",
+    "symptoms": [],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-friendly-name.html"
+  },
+  {
+    "key": "device.languages",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "caution",
+    "summary": "Selects whether the printer parses ZPL, EPL, or a hybrid mode.",
+    "explain": "Device language chooses the command language the printer expects on its host ports. Common values are zpl, epl, and hybrid_xml. A printer left in EPL ignores ZPL setup, which looks like a dead USB port. Switch language, then send a command from the new language only. Some firmware applies the change on the next job, and some want a restart. Query the key again before assuming it stuck. This library validates the three common names and rejects anything else so a typo cannot push the printer into an unknown mode.",
+    "symptoms": [
+      "no-print",
+      "blank-labels"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html",
+    "values": [
+      "zpl",
+      "epl",
+      "hybrid_xml"
+    ]
+  },
+  {
+    "key": "device.reset",
+    "type": "string",
+    "readOnly": false,
+    "access": [
+      "do"
+    ],
+    "zplEquivalent": "JR",
+    "risk": "destructive",
+    "summary": "Restarts the printer through an SGD do command.",
+    "explain": "Device reset is an action, not a stored value. Sending do runs a restart similar to a power cycle. Jobs in memory are lost. Use it after a language or network change that will not apply until boot, not as a way to clear a paper fault. The setter refuses a normal set, because this key is not a setvar. The do helper also requires an explicit confirm flag. Wait for the printer to enumerate again, then read identification before the next label.",
+    "symptoms": [
+      "printer-offline"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-reset.html"
+  },
+  {
+    "key": "device.restore_defaults",
+    "type": "string",
+    "readOnly": false,
+    "access": [
+      "do"
+    ],
+    "zplEquivalent": "JUF",
+    "risk": "destructive",
+    "summary": "Restores factory defaults through an SGD do command.",
+    "explain": "Restore defaults is the SGD action that puts saved setup back to the factory baseline. Darkness, size, and network options can all reset. Use it when the configuration is untrustworthy. It is not a media calibration and it will not fix a hardware fault. The library requires confirm before it will emit the do command. There is no setvar form. After it finishes, set media type, width, and darkness again and save the new baseline on purpose.",
+    "symptoms": [
+      "settings-lost"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-restore-defaults.html"
+  },
+  {
+    "key": "device.unique_id",
+    "type": "string",
+    "readOnly": true,
+    "access": [
+      "getvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "safe",
+    "summary": "Reads the printer unique id. It cannot be set.",
+    "explain": "Unique id is a factory identifier for the device. Programs use it to tell two printers of the same model apart. The key is read-only. A set attempt is rejected by this library and should be rejected by the printer as well. Do not treat it as a secret password, but do not publish it in screenshots if the workflow uses it as an account key. If the reply is empty, fall back to the identification string from the host identification command.",
+    "symptoms": [
+      "unknown-model"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-unique-id.html"
+  },
+  {
+    "key": "ezpl.label_length_max",
+    "type": "int",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "LL",
+    "risk": "caution",
+    "summary": "Maximum label length the sensor will search, in dots.",
+    "explain": "Maximum label length is how far the printer will travel while looking for a gap or mark before it assumes continuous media. Set it a little longer than one real label plus the gap. If it is shorter than the label, calibration decides the stock is continuous and then skips. It is not the same number as the format label length, but the two have to agree in spirit: the format length is one label, and this ceiling must be larger. The accepted range here is 1 to 32000 dots. Confirm on the printer. An absurdly large ceiling makes a missing gap feed a long strip.",
+    "symptoms": [
+      "skipping-labels",
+      "short-feed"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-label-length-max.html",
+    "range": [
+      1,
+      32000
+    ],
+    "units": "dots"
+  },
+  {
+    "key": "ezpl.media_type",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "MN",
+    "risk": "caution",
+    "summary": "Selects continuous, gap/notch, or mark media.",
+    "explain": "EZPL media type is the Link-OS stock selector. Continuous has no index, gap/notch is die-cut labels, and mark is black-mark stock. It corresponds to the ZPL media tracking command. Shipping labels are almost always gap/notch. Set this before calibration. The sensor uses it to decide what a valid index looks like. The default on many models is gap/notch. If you load continuous receipt stock, change it or the printer will keep searching for a gap.",
+    "symptoms": [
+      "skipping-labels",
+      "blank-labels"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-media-type.html",
+    "values": [
+      "continuous",
+      "gap/notch",
+      "mark"
+    ]
+  },
+  {
+    "key": "ezpl.print_method",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "MT",
+    "risk": "caution",
+    "summary": "Selects direct thermal or thermal transfer.",
+    "explain": "Print method chooses direct thermal or thermal transfer. The tokens used here are direct thermal and thermal trans, which is the short form many firmware builds store. Direct thermal needs coated stock and no ribbon. Transfer needs a ribbon. The mismatch is a blank label with a healthy status. If a set is rejected, get the key and copy the printer's own spelling, then widen this list in a spec change. Method is independent from darkness. A darker setting will not make transfer mode mark direct stock.",
+    "symptoms": [
+      "blank-labels",
+      "ribbon-wrinkle"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-print-method.html",
+    "values": [
+      "direct thermal",
+      "thermal trans"
+    ]
+  },
+  {
+    "key": "ezpl.print_width",
+    "type": "int",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "PW",
+    "risk": "caution",
+    "summary": "Print width in dots.",
+    "explain": "EZPL print width is the stored printable width in dots. It matches the ZPL print-width command. A 4 inch label at 203 dpi is 812 dots. The same physical width at 300 dpi is a larger dot count, so do not reuse a number across heads. This library accepts 2 to 32000 and lets the printer clamp to the real head. Still send the true label width, not the head maximum, when the stock is narrower. Set width, print a frame, and only then save. A too-wide value wears the platen where there is no media.",
+    "symptoms": [
+      "clipped-label"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-print-width.html",
+    "range": [
+      2,
+      32000
+    ],
+    "units": "dots"
+  },
+  {
+    "key": "ezpl.tear_off",
+    "type": "int",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "TA",
+    "risk": "caution",
+    "summary": "Tear-off present adjustment in dots.",
+    "explain": "Tear-off is the SGD form of the present adjustment. Positive numbers feed the label farther out of the printer and negative numbers stop it sooner. The working window checked here is -120 to 120 dots, matching the ZPL tear-off command used on desktop mechanisms. At 203 dpi, eight dots is about a millimeter. Change it in small steps and print one label between tries. Do not encode a large present distance as extra label length. That feeds another label. This key is the small trim.",
+    "symptoms": [
+      "misaligned",
+      "not-presenting"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-tear-off.html",
+    "range": [
+      -120,
+      120
+    ],
+    "units": "dots"
+  },
+  {
+    "key": "head.resolution.in_dpi",
+    "type": "int",
+    "readOnly": true,
+    "access": [
+      "getvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "safe",
+    "summary": "Reads the printhead resolution in dots per inch.",
+    "explain": "Head resolution reports 203, 300, or 600 on typical heads. It is read-only because the head, not a setting, decides it. Use the value to convert millimeters to dots. A 4 inch label is 812 dots at 203 dpi and about 1200 dots at 300 dpi. Host identification reports dots per millimeter instead. Eight dots per millimeter matches 203 dpi. Prefer this key when it answers. If the key is missing, fall back to the identification record rather than assuming 203.",
+    "symptoms": [
+      "unknown-model"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-head-resolution-in-dpi.html",
+    "range": [
+      100,
+      600
+    ],
+    "units": "dpi"
+  },
+  {
+    "key": "interface.network.active.ip_addr",
+    "type": "string",
+    "readOnly": true,
+    "access": [
+      "getvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "safe",
+    "summary": "Reads the IP address of the active network interface.",
+    "explain": "Active IP address returns the address the printer is using right now on whichever interface is up. It is a get-only view, not the place to configure a static address. A typical reply is a dotted IPv4 string. No address, or zeros, means the interface has not obtained one. The library rejects a set so a tool cannot accidentally write this key. Change address through the documented configurable IP keys if you must. Pair the value with identification when you file a printer report, and do not treat it as stable across DHCP renewals.",
+    "symptoms": [
+      "network-lost"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/r-sgd-wireless-sgd-wireless-commands/r-sgd-interface-network-active-ip-addr.html"
+  },
+  {
+    "key": "media.darkness",
+    "type": "int",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "SD",
+    "risk": "caution",
+    "summary": "Gets or sets absolute darkness on the 0 to 30 scale.",
+    "explain": "Media darkness is the settings key many desktop firmware builds use for the same 0 to 30 burn level as the absolute darkness command. A dedicated HTML page for this exact key was not present beside the newer tone setting, so the source link is the absolute darkness command that defines the scale. Values outside 0 to 30 are rejected here. Tenths may be accepted by some firmware. This checker uses whole numbers. Raise it for pale barcodes and lower it when the image blooms. Save the ZPL configuration if the model forgets the value at power off.",
+    "symptoms": [
+      "faded-print",
+      "too-dark-print"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-sd.html",
+    "range": [
+      0,
+      30
+    ],
+    "units": "absolute"
+  },
+  {
+    "key": "media.printmode",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "MM",
+    "risk": "caution",
+    "summary": "Selects tear-off, peel, rewind, cutter, or applicator behavior.",
+    "explain": "Print mode is the SGD form of the present style. The values used here are the common lowercase phrases: tear off, peel off, rewind, cutter, and applicator. Firmware spelling varies. If a set is rejected, read the key first and reuse the exact token the printer returned. Peel and cutter require the matching hardware. Setting them on a plain desktop makes the printer wait for a sensor that will never trip. Tear-off position is a different key. Set the mode first, then the present distance.",
+    "symptoms": [
+      "not-presenting",
+      "misaligned"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-media-printmode.html",
+    "values": [
+      "tear off",
+      "peel off",
+      "rewind",
+      "cutter",
+      "applicator"
+    ]
+  },
+  {
+    "key": "media.sense_mode",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "MN",
+    "risk": "caution",
+    "summary": "Selects gap, bar, or continuous sensing on firmware that exposes this key.",
+    "explain": "Sense mode picks how the media sensor indexes the stock. Gap follows the liner between labels, bar follows a black mark, and continuous does not index. Newer firmware often uses device.sensor_select with transmissive and reflective instead. If this key is unknown, set ezpl.media_type and the sensor select key. The source link is the ZPL tracking command, which is the format-language equivalent of this choice. Change sensing only when the stock actually changed, then calibrate. A mode that does not match the roll is the usual cause of skipped labels.",
+    "symptoms": [
+      "skipping-labels",
+      "blank-labels"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-mn.html",
+    "values": [
+      "gap",
+      "bar",
+      "continuous"
+    ]
+  },
+  {
+    "key": "media.speed",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "PR",
+    "risk": "caution",
+    "summary": "Gets or sets print speed in inches per second.",
+    "explain": "Media speed is the SGD form of print rate. Documented numeric values run from 2 to 12 inches per second, and some firmware also accepts the words up and down. The printer still clamps to the fastest speed the mechanism can do. Setting 12 on a 6 ips desktop does not make it a 12 ips printer. This library allows the documented numbers plus up and down, and rejects other words. Slower speeds help small barcodes. Change speed and darkness together only by one variable at a time.",
+    "symptoms": [
+      "faded-print",
+      "slow-throughput"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-media-speed.html",
+    "values": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "up",
+      "down"
+    ],
+    "units": "ips"
+  },
+  {
+    "key": "media.type",
+    "type": "enum",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "MN",
+    "risk": "caution",
+    "summary": "Older media-type key. Confirm the spelling on the printer.",
+    "explain": "Media type on older firmware describes the stock family, with values seen in the field such as label, tag, and journal. Current Link-OS builds prefer ezpl.media_type with continuous, gap/notch, and mark. If get on this key returns a question mark, use the ezpl key instead. The value list here is the common older set and is not marked verified against every model. A rejected set means the printer wants a different spelling. Wrong media type makes the sensor look for an index that is not there, which shows up as skipping or a long feed.",
+    "symptoms": [
+      "skipping-labels",
+      "blank-labels"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/r-sgd-sgd-printer-commands/r-sgd-command-structure.html",
+    "values": [
+      "label",
+      "tag",
+      "journal"
+    ]
+  },
+  {
+    "key": "media.width_sense.enable",
+    "type": "bool",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "caution",
+    "summary": "Turns automatic label-width sensing on or off.",
+    "explain": "Width sense lets the printer measure the stock width instead of trusting only the stored print width. The values used here are on and off. A dedicated command page for this key was not in the SGD index we checked, so the source link is the sensor-type page that describes how desktop sensors see media. Leave sensing off when you set an explicit width that you trust. Turn it on only if the model documents automatic width and the stock has a clear edge. A bad automatic width clips the label or burns the platen. Read the key back after a set.",
+    "symptoms": [
+      "clipped-label"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop/zd421-and-zd621-desktop-printers-user-guide/color-touch-display-and-controls/print-menu/print-sensors-sensor-type.html",
+    "values": [
+      "on",
+      "off"
+    ]
+  },
+  {
+    "key": "odometer.total_print_length",
+    "type": "string",
+    "readOnly": true,
+    "access": [
+      "getvar"
+    ],
+    "zplEquivalent": null,
+    "risk": "safe",
+    "summary": "Reads the lifetime print-length odometer.",
+    "explain": "Total print length is a read-only odometer of how much media the printer has fed over its life. The text may be a bare number of inches or a number with a unit. Use it to spot a heavily used head when print quality is poor at settings that used to work. It does not reset when you load new media. This library does not parse the unit. Callers should keep the raw string. A set is rejected. There is no honest reason for a setup tool to rewrite a lifetime counter.",
+    "symptoms": [],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-odometer-total-print-length.html"
+  },
+  {
+    "key": "print.tone",
+    "type": "int",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "SD",
+    "risk": "caution",
+    "summary": "Link-OS darkness, on the same idea as a 0 to 30 burn level.",
+    "explain": "Print tone is the Link-OS name for darkness on many current firmware builds. It tracks the same kind of 0 to 30 scale as absolute darkness. Older desktops answer media.darkness instead, or as well. Read both if you are not sure which generation you have, and write the one that reads back. This library range-checks 0 to 30. Confirm the live printer before treating a tenth as valid. Tone does not select ribbon versus direct thermal. Set the print method separately so a darkness change is not hiding the wrong media type.",
+    "symptoms": [
+      "faded-print",
+      "too-dark-print"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-print-tone.html",
+    "range": [
+      0,
+      30
+    ],
+    "units": "absolute"
+  },
+  {
+    "key": "zpl.relative_darkness",
+    "type": "int",
+    "readOnly": false,
+    "access": [
+      "getvar",
+      "setvar"
+    ],
+    "zplEquivalent": "MD",
+    "risk": "caution",
+    "summary": "Relative darkness in tenths, matching the relative ZPL command.",
+    "explain": "Relative darkness is the SGD cousin of the relative media-darkness command. The stored integer is in tenths: 10 means one darkness step, and the documented window runs from -300 to 300. It adds to the current base rather than replacing it. Sending it twice applies two adjustments. Desktop models often keep the result. Industrial models may not. Read it back after a set, then save if your workflow needs it after power loss. This library checks the -300 to 300 window and does not scale the number for you. Pass tenths, not a 0 to 30 absolute level.",
+    "symptoms": [
+      "faded-print",
+      "too-dark-print"
+    ],
+    "models": {
+      "all": true
+    },
+    "sourceRef": "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-zpl-relative-darkness.html",
+    "range": [
+      -300,
+      300
+    ],
+    "units": "tenths"
+  }
+]

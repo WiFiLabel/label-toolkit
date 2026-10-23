@@ -1,0 +1,21 @@
+id: "ZT"
+language: "epl2"
+prefix: ""
+name: "Print Top First"
+category: "label-format"
+syntax: "ZT"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Prints the label starting at the top."
+explain: "Print top first is the usual EPL2 direction: the top of the format leads out of the printer. Send it to undo a previous bottom-first command when labels suddenly look upside down after a shared printer was reconfigured. It does not move the image in dots. Width, length, and the graphic origin still decide placement. Pair it with a single test print. Direction changes are persistent on many older firmware builds until they are replaced."
+symptoms: ["misaligned"]
+examples:
+  - title: "Top first"
+    code: "ZT"
+seeAlso: ["ZB", "P"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

@@ -1,0 +1,28 @@
+id: "P"
+language: "epl2"
+prefix: ""
+name: "Print"
+category: "label-format"
+syntax: "Pn"
+joiner: ""
+params:
+  - key: "n"
+    name: "copies"
+    type: "number"
+    range: [1, 9999]
+    step: 1
+    units: "labels"
+    default: 1
+persist: null
+sgd: null
+risk: "safe"
+summary: "Prints the current EPL image one or more times."
+explain: "Print sends the current EPL image to the head. The number is how many copies to make. A setup flow uses 1. Forgetting the command leaves the image in the buffer and nothing comes out of the printer. The graphic wrapper always prints a single copy after the bitmap so the host does not have to remember the trailer. Printing does not save settings. Width and density stay as they were for the next job until something changes them."
+symptoms: ["no-print"]
+examples:
+  - title: "Print one label"
+    code: "P1"
+seeAlso: ["N", "GW"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

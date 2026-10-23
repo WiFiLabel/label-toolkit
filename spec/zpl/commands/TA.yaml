@@ -1,0 +1,30 @@
+id: "TA"
+language: "zpl"
+prefix: "~"
+name: "Tear Off"
+category: "media"
+syntax: "~TAaaa"
+joiner: ""
+params:
+  - key: "a"
+    name: "tear off"
+    type: "number"
+    range: [-120, 120]
+    step: 1
+    units: "dots"
+    default: 0
+persist: "^JUS"
+sgd: "ezpl.tear_off"
+risk: "caution"
+summary: "Adjusts how far the label is presented past the tear bar."
+explain: "Tear-off adds or removes a small present distance after the label is printed, so the gap lines up with the tear bar. Positive values feed farther out. Negative values stop sooner. The practical range on desktop models is about -120 to 120 dots. At 203 dpi, eight dots is about one millimeter. If the gap stops short of the bar by a couple of millimeters, add a modest positive value and print once. Do not lengthen the label to chase the tear bar. That often feeds a second label. Save with the configuration save command when the stop looks right."
+symptoms: ["misaligned", "not-presenting"]
+examples:
+  - title: "Present 120 dots farther"
+    code: "~TA120"
+  - title: "Present 60 dots less"
+    code: "~TA-060"
+seeAlso: ["MM", "LL", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ta.html"

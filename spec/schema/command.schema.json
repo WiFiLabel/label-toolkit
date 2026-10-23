@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/WiFiLabel/label-toolkit/spec/schema/command.schema.json",
+  "title": "Printer language command",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "language",
+    "prefix",
+    "name",
+    "category",
+    "syntax",
+    "joiner",
+    "params",
+    "persist",
+    "sgd",
+    "risk",
+    "summary",
+    "explain",
+    "symptoms",
+    "examples",
+    "seeAlso",
+    "models",
+    "sourceRef"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}$" },
+    "language": { "enum": ["zpl", "epl2", "tspl", "escpos"] },
+    "prefix": { "type": "string", "maxLength": 2 },
+    "name": { "type": "string", "minLength": 3 },
+    "category": {
+      "enum": [
+        "print-quality",
+        "media",
+        "calibration",
+        "status",
+        "memory",
+        "network",
+        "reset",
+        "label-format"
+      ]
+    },
+    "syntax": { "type": "string", "minLength": 1 },
+    "joiner": { "enum": ["", ","] },
+    "params": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/param" }
+    },
+    "persist": { "type": ["string", "null"] },
+    "sgd": { "type": ["string", "null"] },
+    "risk": { "enum": ["safe", "caution", "destructive"] },
+    "summary": { "type": "string", "minLength": 12 },
+    "explain": { "type": "string", "minLength": 40 },
+    "symptoms": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+    },
+    "examples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "code"],
+        "properties": {
+          "title": { "type": "string", "minLength": 3 },
+          "code": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "seeAlso": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9]{0,15}$" }
+    },
+    "models": { "$ref": "#/$defs/models" },
+    "sourceRef": {
+      "type": "string",
+      "pattern": "^https://docs\\.zebra\\.com/"
+    }
+  },
+  "$defs": {
+    "param": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "name", "type"],
+      "properties": {
+        "key": { "type": "string", "pattern": "^[a-z][a-z0-9]*$" },
+        "name": { "type": "string" },
+        "type": { "enum": ["number", "string", "enum", "bool"] },
+        "range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "number" }
+        },
+        "step": { "type": "number" },
+        "default": { "type": ["number", "string", "boolean", "null"] },
+        "units": { "type": "string" },
+        "values": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all"],
+      "properties": {
+        "all": { "type": "boolean" },
+        "ids": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

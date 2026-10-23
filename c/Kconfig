@@ -1,0 +1,10 @@
+menu "Label toolkit"
+
+    config WLT_WITH_DOCS
+        bool "Embed one-line spec summaries"
+        default n
+        help
+            Copies command and SGD summaries into the firmware image.
+            Leave this off unless a debug tool needs the text on device.
+
+endmenu

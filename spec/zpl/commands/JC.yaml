@@ -1,0 +1,21 @@
+id: "JC"
+language: "zpl"
+prefix: "~"
+name: "Media Calibration"
+category: "calibration"
+syntax: "~JC"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Runs a media-sensor calibration and feeds several labels."
+explain: "Media calibration teaches the sensor where the gap, web, or mark is. The printer feeds several labels while it measures the difference between stock and the index. Run it after you change label size, liner color, or tracking mode, and whenever the printer skips or feeds a blank between good labels. The command is immediate. It does not need a format wrapper. Keep hands clear of the tear bar because the mechanism moves on its own. Calibration does not set darkness or tear-off. Do those next, with a single test label, and save the configuration if the sensor result should persist."
+symptoms: ["skipping-labels", "blank-labels", "red-light"]
+examples:
+  - title: "Calibrate the media sensor"
+    code: "~JC"
+seeAlso: ["JG", "MN", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-jc.html"

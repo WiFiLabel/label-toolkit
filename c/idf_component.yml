@@ -1,0 +1,5 @@
+version: "0.1.0"
+description: Configure and diagnose thermal label printers (ZPL and SGD)
+url: https://github.com/WiFiLabel/label-toolkit
+license: MIT
+dependencies: {}

@@ -1,0 +1,13 @@
+key: "media.printmode"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "MM"
+risk: "caution"
+summary: "Selects tear-off, peel, rewind, cutter, or applicator behavior."
+explain: "Print mode is the SGD form of the present style. The values used here are the common lowercase phrases: tear off, peel off, rewind, cutter, and applicator. Firmware spelling varies. If a set is rejected, read the key first and reuse the exact token the printer returned. Peel and cutter require the matching hardware. Setting them on a plain desktop makes the printer wait for a sensor that will never trip. Tear-off position is a different key. Set the mode first, then the present distance."
+symptoms: ["not-presenting", "misaligned"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-media-printmode.html"
+values: ["tear off", "peel off", "rewind", "cutter", "applicator"]

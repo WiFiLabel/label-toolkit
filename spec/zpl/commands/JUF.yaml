@@ -1,0 +1,21 @@
+id: "JUF"
+language: "zpl"
+prefix: "^"
+name: "Factory Defaults"
+category: "reset"
+syntax: "^JUF"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "destructive"
+summary: "Reloads factory defaults and discards saved setup."
+explain: "Factory defaults replaces the saved configuration with the values the printer shipped with. Network options, darkness, media size, and custom names can all disappear. Use it when the printer is badly mis-set and you would rather start over than untangle one field. Do not use it as a routine calibrate. The builders in this library refuse to emit it unless the caller passes an explicit confirm flag, because the effect is hard to undo. After the reload, calibrate the media and set width, length, and darkness again, then save the new baseline."
+symptoms: ["settings-lost", "blank-labels"]
+examples:
+  - title: "Reload factory defaults"
+    code: "^XA^JUF^XZ"
+seeAlso: ["JUN", "JUR", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ju.html"

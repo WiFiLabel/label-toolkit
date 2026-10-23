@@ -1,0 +1,14 @@
+key: "ezpl.label_length_max"
+type: "int"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "LL"
+risk: "caution"
+summary: "Maximum label length the sensor will search, in dots."
+explain: "Maximum label length is how far the printer will travel while looking for a gap or mark before it assumes continuous media. Set it a little longer than one real label plus the gap. If it is shorter than the label, calibration decides the stock is continuous and then skips. It is not the same number as the format label length, but the two have to agree in spirit: the format length is one label, and this ceiling must be larger. The accepted range here is 1 to 32000 dots. Confirm on the printer. An absurdly large ceiling makes a missing gap feed a long strip."
+symptoms: ["skipping-labels", "short-feed"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-label-length-max.html"
+range: [1, 32000]
+units: "dots"

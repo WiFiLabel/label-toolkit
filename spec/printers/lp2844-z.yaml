@@ -1,0 +1,20 @@
+id: "lp2844-z"
+displayName: "LP 2844-Z"
+languages: ["zpl"]
+dpi: [203]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 4
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for LP 2844-Z is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "2844-family desktop that speaks ZPL."
+explain: "The LP 2844-Z is the ZPL model in the 2844 family. Tell it apart from the EPL2-only LP 2844 by the model sticker. Send ZPL to this profile. The dot width and speed here match the 203 dpi 4 inch assumption used for the EPL-only model, and they are not hardware-verified."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

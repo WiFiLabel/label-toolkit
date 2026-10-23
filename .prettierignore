@@ -1,0 +1,16 @@
+dist/
+node_modules/
+.turbo/
+.cache/
+c/build-host/
+c/examples/esp-idf-basic/build/
+c/examples/esp-idf-basic/managed_components/
+packages/spec/src/generated/
+packages/spec/data/
+c/include/wlt_spec.h
+c/src/wlt_spec.c
+pnpm-lock.yaml
+apps/tools/.next/
+apps/tools/test-results/
+apps/tools/playwright-report/
+codegen/src/write_vectors.py

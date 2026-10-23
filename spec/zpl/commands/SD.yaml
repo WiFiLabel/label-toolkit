@@ -1,0 +1,27 @@
+id: "SD"
+language: "zpl"
+prefix: "~"
+name: "Set Darkness"
+category: "print-quality"
+syntax: "~SDa"
+joiner: ""
+params:
+  - key: "a"
+    name: "darkness"
+    type: "number"
+    range: [0, 30]
+    step: 0.1
+    units: "absolute"
+persist: "^JUS"
+sgd: "media.darkness"
+risk: "caution"
+summary: "Sets the absolute print darkness on the 0 to 30 scale."
+explain: "Absolute darkness chooses how hard the printhead burns for later labels, from a light setting near zero up to the darkest step the firmware allows. Use a higher value when barcodes look pale, and a lower value when dots swell, the ribbon wrinkles, or the head feels too hot to leave running. This is the base level. A relative darkness command afterwards adds or subtracts from it instead of naming a new base. Save after you are happy with a test label, because some models drop the change at power off until a save is sent."
+symptoms: ["faded-print", "too-dark-print"]
+examples:
+  - title: "Set a mid darkness"
+    code: "~SD15"
+seeAlso: ["MD", "PR", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-sd.html"

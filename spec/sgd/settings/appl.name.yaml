@@ -1,0 +1,12 @@
+key: "appl.name"
+type: "string"
+readOnly: true
+access: ["getvar"]
+zplEquivalent: null
+risk: "safe"
+summary: "Reads the application firmware name."
+explain: "Application name reports the firmware application currently running, which is how you tell a ZPL build from an unexpected download. The value is read-only. It changes when firmware is updated, not when you save darkness or width. Pair it with host identification. One gives a model line and the other gives the application package name. If a feature in this spec is missing on the printer, quote this string in a bug report along with the model."
+symptoms: ["unknown-model"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-appl-name.html"

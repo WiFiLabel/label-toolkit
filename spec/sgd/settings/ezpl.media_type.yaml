@@ -1,0 +1,13 @@
+key: "ezpl.media_type"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "MN"
+risk: "caution"
+summary: "Selects continuous, gap/notch, or mark media."
+explain: "EZPL media type is the Link-OS stock selector. Continuous has no index, gap/notch is die-cut labels, and mark is black-mark stock. It corresponds to the ZPL media tracking command. Shipping labels are almost always gap/notch. Set this before calibration. The sensor uses it to decide what a valid index looks like. The default on many models is gap/notch. If you load continuous receipt stock, change it or the printer will keep searching for a gap."
+symptoms: ["skipping-labels", "blank-labels"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-media-type.html"
+values: ["continuous", "gap/notch", "mark"]

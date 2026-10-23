@@ -1,0 +1,44 @@
+id: "GFA"
+language: "zpl"
+prefix: "^"
+name: "Graphic Field"
+category: "label-format"
+syntax: "^GFAa,b,c,d,data"
+joiner: ","
+params:
+  - key: "a"
+    name: "compression"
+    type: "number"
+    range: [0, 0]
+    step: 1
+  - key: "b"
+    name: "binary bytes"
+    type: "number"
+    range: [1, 5000000]
+    step: 1
+    units: "bytes"
+  - key: "c"
+    name: "graphic bytes"
+    type: "number"
+    range: [1, 5000000]
+    step: 1
+    units: "bytes"
+  - key: "d"
+    name: "bytes per row"
+    type: "number"
+    range: [1, 2000]
+    step: 1
+    units: "bytes"
+persist: null
+sgd: null
+risk: "safe"
+summary: "Prints a 1-bit image sent as ASCII hex."
+explain: "Graphic field ASCII places a monochrome bitmap on the label. The counts are the binary size, the graphic size, and the bytes per row, followed by hex digits. This library's wrapper sends an uncompressed image: both sizes equal the packed bitmap length, and each source byte becomes two hex characters. The bitmap must be row-packed, one bit per dot, with the row padded to a whole byte. A short buffer is rejected instead of printing a torn image. The wrapper also sets print width and label length so a 4 by 6 inch page is not clipped by a narrower previous format."
+symptoms: ["clipped-label", "blank-labels"]
+examples:
+  - title: "One black row, 8 dots"
+    code: "^XA^PW8^LL1^FO0,0^GFA,1,1,1,FF^FS^XZ"
+seeAlso: ["FO", "FS", "PW"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-gf.html"

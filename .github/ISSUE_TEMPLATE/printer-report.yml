@@ -1,0 +1,35 @@
+name: Printer report
+description: Model, firmware, and a ~HI capture so a profile can be checked.
+title: "printer: "
+labels: ["printer-report"]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      description: The name on the printer, such as ZD421 or GX420d.
+      placeholder: ZD421
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware
+      description: The firmware or V number from the config label or from ~HI.
+    validations:
+      required: true
+  - type: textarea
+    id: hi
+    attributes:
+      label: "~HI output"
+      description: Paste the reply to ~HI. You can leave the STX and ETX bytes as text.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: dpi, media type, and anything the profile should not guess.
+    validations:
+      required: false

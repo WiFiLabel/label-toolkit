@@ -1,0 +1,26 @@
+id: "HI"
+language: "zpl"
+command: "~HI"
+framing:
+  stx: 2
+  etx: 3
+  lineEnding: "crlf"
+  lineCount: 1
+lines:
+  - name: "identity"
+    fields:
+      - name: "model"
+        index: 0
+        type: "string"
+      - name: "firmware"
+        index: 1
+        type: "string"
+      - name: "dotsPerMm"
+        index: 2
+        type: "number"
+      - name: "memory"
+        index: 3
+        type: "string"
+summary: "One record with model, firmware, dots per millimeter, and memory."
+explain: "Host identification is a single comma-separated record. The first field is the model text, the second is firmware or a configuration id, the third is dots per millimeter, and the fourth is memory. Map 8 dots per millimeter to 203 dpi, 12 to 300 dpi, and 24 to 600 dpi. If the third field is already 203 or higher, treat it as dpi directly. The memory field usually ends in KB. Strip that suffix before converting to a number. The record may be wrapped in start-of-text and end-of-text. A parser should still accept a bare line."
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hi.html"

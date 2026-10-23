@@ -1,0 +1,26 @@
+id: "D"
+language: "epl2"
+prefix: ""
+name: "Density"
+category: "print-quality"
+syntax: "Dn"
+joiner: ""
+params:
+  - key: "n"
+    name: "density"
+    type: "number"
+    range: [0, 15]
+    step: 1
+persist: null
+sgd: null
+risk: "caution"
+summary: "Sets EPL2 darkness, often called density."
+explain: "Density is the EPL2 darkness control. Larger numbers burn hotter, up to a small integer ceiling around 15 on classic desktop firmware. Raise it when print is gray. Lower it when the label looks blotchy or the head is leaving a shiny track. It is not the same scale as ZPL darkness, which runs to 30. Do not copy a ZPL number straight into this command. Change it one step at a time and print. The graphic wrapper does not set density for you."
+symptoms: ["faded-print", "too-dark-print"]
+examples:
+  - title: "Mid density"
+    code: "D8"
+seeAlso: ["S", "P"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

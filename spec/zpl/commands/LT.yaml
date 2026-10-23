@@ -1,0 +1,28 @@
+id: "LT"
+language: "zpl"
+prefix: "^"
+name: "Label Top"
+category: "media"
+syntax: "^LTa"
+joiner: ""
+params:
+  - key: "a"
+    name: "top offset"
+    type: "number"
+    range: [-120, 120]
+    step: 1
+    units: "dots"
+    default: 0
+persist: "^JUS"
+sgd: null
+risk: "caution"
+summary: "Shifts the image up or down relative to the top of the label."
+explain: "Label top slides the printed image vertically, in dots, without changing the media feed length. Negative values move the image toward the leading edge. Use it when the art is consistently high or low but the gap still stops in the right place. It does not fix a sensor that is tracking the wrong feature. The usual working window is about -120 to 120 dots. At 203 dpi, 8 dots is roughly one millimeter. Adjust with a crosshair label, then save. Tear-off is the separate control for where the gap sits on the tear bar."
+symptoms: ["misaligned"]
+examples:
+  - title: "Move image down 20 dots"
+    code: "^XA^LT20^XZ"
+seeAlso: ["LS", "TA", "LH", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-lt.html"

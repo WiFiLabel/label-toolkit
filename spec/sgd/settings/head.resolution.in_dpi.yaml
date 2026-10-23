@@ -1,0 +1,14 @@
+key: "head.resolution.in_dpi"
+type: "int"
+readOnly: true
+access: ["getvar"]
+zplEquivalent: null
+risk: "safe"
+summary: "Reads the printhead resolution in dots per inch."
+explain: "Head resolution reports 203, 300, or 600 on typical heads. It is read-only because the head, not a setting, decides it. Use the value to convert millimeters to dots. A 4 inch label is 812 dots at 203 dpi and about 1200 dots at 300 dpi. Host identification reports dots per millimeter instead. Eight dots per millimeter matches 203 dpi. Prefer this key when it answers. If the key is missing, fall back to the identification record rather than assuming 203."
+symptoms: ["unknown-model"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-head-resolution-in-dpi.html"
+range: [100, 600]
+units: "dpi"

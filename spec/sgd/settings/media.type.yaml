@@ -1,0 +1,13 @@
+key: "media.type"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "MN"
+risk: "caution"
+summary: "Older media-type key. Confirm the spelling on the printer."
+explain: "Media type on older firmware describes the stock family, with values seen in the field such as label, tag, and journal. Current Link-OS builds prefer ezpl.media_type with continuous, gap/notch, and mark. If get on this key returns a question mark, use the ezpl key instead. The value list here is the common older set and is not marked verified against every model. A rejected set means the printer wants a different spelling. Wrong media type makes the sensor look for an index that is not there, which shows up as skipping or a long feed."
+symptoms: ["skipping-labels", "blank-labels"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/r-sgd-sgd-printer-commands/r-sgd-command-structure.html"
+values: ["label", "tag", "journal"]

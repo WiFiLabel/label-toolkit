@@ -1,0 +1,13 @@
+key: "device.languages"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: null
+risk: "caution"
+summary: "Selects whether the printer parses ZPL, EPL, or a hybrid mode."
+explain: "Device language chooses the command language the printer expects on its host ports. Common values are zpl, epl, and hybrid_xml. A printer left in EPL ignores ZPL setup, which looks like a dead USB port. Switch language, then send a command from the new language only. Some firmware applies the change on the next job, and some want a restart. Query the key again before assuming it stuck. This library validates the three common names and rejects anything else so a typo cannot push the printer into an unknown mode."
+symptoms: ["no-print", "blank-labels"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"
+values: ["zpl", "epl", "hybrid_xml"]

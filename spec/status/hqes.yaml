@@ -1,0 +1,34 @@
+id: "HQES"
+language: "zpl"
+command: "~HQES"
+framing:
+  stx: 2
+  etx: 3
+  lineEnding: "crlf"
+  lineCount: 2
+lines:
+  - name: "errors"
+    fields:
+      - name: "errorCount"
+        index: 0
+        type: "number"
+      - name: "errorWord0"
+        index: 1
+        type: "hex"
+      - name: "errorWord1"
+        index: 2
+        type: "hex"
+  - name: "warnings"
+    fields:
+      - name: "warningCount"
+        index: 0
+        type: "number"
+      - name: "warningWord0"
+        index: 1
+        type: "hex"
+      - name: "warningWord1"
+        index: 2
+        type: "hex"
+summary: "Error and warning counts plus two hex words each."
+explain: "The ES host query returns an errors line and a warnings line. Each line has a count and two hexadecimal words. A count of zero with empty words means that group is clear. A non-zero count means the printer wants attention, but the meaning of each bit depends on firmware. This library surfaces the words and a simple errors-present or warnings-present flag. It does not assign a name to every bit. The text is often wrapped in the same start and end bytes as host status. Parsers should tolerate extra labels such as PRINTER STATUS around the two lines."
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-hq.html"

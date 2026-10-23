@@ -1,0 +1,14 @@
+key: "media.speed"
+type: "enum"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "PR"
+risk: "caution"
+summary: "Gets or sets print speed in inches per second."
+explain: "Media speed is the SGD form of print rate. Documented numeric values run from 2 to 12 inches per second, and some firmware also accepts the words up and down. The printer still clamps to the fastest speed the mechanism can do. Setting 12 on a 6 ips desktop does not make it a 12 ips printer. This library allows the documented numbers plus up and down, and rejects other words. Slower speeds help small barcodes. Change speed and darkness together only by one variable at a time."
+symptoms: ["faded-print", "slow-throughput"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-media-speed.html"
+values: ["2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "up", "down"]
+units: "ips"

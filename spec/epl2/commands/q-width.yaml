@@ -1,0 +1,27 @@
+id: "q"
+language: "epl2"
+prefix: ""
+name: "Set Width"
+category: "media"
+syntax: "qnnn"
+joiner: ""
+params:
+  - key: "n"
+    name: "width"
+    type: "number"
+    range: [1, 32000]
+    step: 1
+    units: "dots"
+persist: null
+sgd: null
+risk: "caution"
+summary: "Sets the label width in dots for EPL2."
+explain: "The lowercase width command sets how many dots across the EPL2 page is. A 4 inch label at 203 dpi is 812 dots. Uppercase Q is a different command and sets length, not width. The two letters must not be swapped. A width wider than the head prints into the platen. A width that is too narrow clips the right side of a graphic. Send it after clearing the buffer and before the graphic or text. Older Eltron-style firmware keeps the value until it is changed again."
+symptoms: ["clipped-label"]
+examples:
+  - title: "4 inch width at 203 dpi"
+    code: "q812"
+seeAlso: ["Q", "GW"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

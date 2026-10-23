@@ -1,0 +1,28 @@
+id: "PQ"
+language: "zpl"
+prefix: "^"
+name: "Print Quantity"
+category: "label-format"
+syntax: "^PQq,p,r,o"
+joiner: ","
+params:
+  - key: "q"
+    name: "quantity"
+    type: "number"
+    range: [1, 99999999]
+    step: 1
+    units: "labels"
+    default: 1
+persist: null
+sgd: null
+risk: "safe"
+summary: "Sets how many labels to print for the current format."
+explain: "Print quantity repeats the current format. The first number is how many labels to produce. Later numbers can insert pauses and serial replicates. A setup tool usually sends 1 so a test does not run the whole roll. Production jobs send the real count. Quantity does not change darkness, speed, or media size. If the first label is wrong, stop the printer before the rest of the batch follows it. The command belongs inside a format, after the fields and before the format end."
+symptoms: ["extra-labels"]
+examples:
+  - title: "Print a single test"
+    code: "^XA^PQ1^XZ"
+seeAlso: ["XA", "XZ"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-pq.html"

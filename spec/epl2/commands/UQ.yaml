@@ -1,0 +1,21 @@
+id: "UQ"
+language: "epl2"
+prefix: ""
+name: "Configuration Query"
+category: "status"
+syntax: "UQ"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Asks an EPL2 printer to report its configuration."
+explain: "Configuration query asks an EPL2 printer to send its setup text back to the host. The reply is a human-readable listing, not the ZPL host-status frame. Use it to see width, length, and density when you cannot print a configuration label. The command does not clear the image buffer and does not start a calibration. Read until the channel is quiet, because the listing is more than one line. ZPL identification is a different command. Send this one only after the printer is actually in EPL mode."
+symptoms: ["unknown-model"]
+examples:
+  - title: "Query configuration"
+    code: "UQ"
+seeAlso: ["N"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

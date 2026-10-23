@@ -1,0 +1,241 @@
+[
+  {
+    "id": "gk420d",
+    "displayName": "GK420d",
+    "languages": [
+      "zpl",
+      "epl2"
+    ],
+    "dpi": [
+      203,
+      300
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 5,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for GK420d is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "GK420d direct-thermal desktop, ZPL, about 4 inches wide.",
+    "explain": "The GK420d is the direct-thermal GK-series desktop. Shipping workflows use it like the GX420d: ZPL, gap labels, tear-off, 203 dpi unless identification says otherwise. The 300 dpi option is listed because both heads were sold. Max width dots in this file is the 203 dpi number, 832, and must be scaled for a 300 dpi head. Top speed is written as 5 ips as a conservative desktop guess. verified is false until a unit is measured. Set direct thermal explicitly. A unit left in transfer mode will not mark coated stock.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "gx420d",
+    "displayName": "GX420d",
+    "languages": [
+      "zpl",
+      "epl2"
+    ],
+    "dpi": [
+      203,
+      300
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 6,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for GX420d is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "GK/GX-series desktop, direct thermal, ZPL with EPL available.",
+    "explain": "The GX420d is a direct-thermal desktop from the G-series. It is a common 4 inch shipping printer and can run ZPL, with EPL still available on many firmware builds. 203 dpi is the usual head. 300 dpi units exist, so read identification before converting inches to dots. The 832 dot width is the 203 dpi figure. Direct thermal is the expected print method. Transfer mode with no ribbon prints blank labels. Speed, darkness, and USB product id in this profile are unverified. Confirm them from a configuration label before locking a workflow.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "lp2844",
+    "displayName": "LP 2844",
+    "languages": [
+      "epl2"
+    ],
+    "dpi": [
+      203
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 4,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for LP 2844 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "Older desktop that speaks EPL2, commonly 203 dpi.",
+    "explain": "The LP 2844 is the EPL2-era desktop used for years as a shipping printer. It does not speak ZPL unless the hardware is the Z variant. Treat width and length with the EPL commands, and send a graphic with the GW wrapper rather than a ZPL graphic field. 203 dpi and a 4 inch head are the usual numbers. Speed tops out lower than later ZPL desktops. All of those figures are unverified here. If a unit answers ZPL identification, it is not this profile. Use the LP 2844-Z profile instead.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "lp2844-z",
+    "displayName": "LP 2844-Z",
+    "languages": [
+      "zpl"
+    ],
+    "dpi": [
+      203
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 4,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for LP 2844-Z is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "2844-family desktop that speaks ZPL.",
+    "explain": "The LP 2844-Z is the ZPL model in the 2844 family. Tell it apart from the EPL2-only LP 2844 by the model sticker. Send ZPL to this profile. The dot width and speed here match the 203 dpi 4 inch assumption used for the EPL-only model, and they are not hardware-verified.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "zd410",
+    "displayName": "ZD410",
+    "languages": [
+      "zpl"
+    ],
+    "dpi": [
+      203,
+      300
+    ],
+    "maxWidthDots": 448,
+    "speed": {
+      "min": 2,
+      "max": 6,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for ZD410 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "Narrow ZD410 desktop, about 2 inches wide, ZPL.",
+    "explain": "The ZD410 is a narrow desktop, about 2.2 inches of print width, not a 4 inch shipping printer. At 203 dpi that is roughly 448 dots. Do not send an 812 dot shipping label to it. The image will clip. This profile exists so a tool can refuse a 4 inch page. 203 and 300 dpi heads were both offered. Read the resolution key. The width here is the 203 dpi estimate and is unverified. Language is ZPL. USB product ids are empty until someone reads a real device.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "zd420",
+    "displayName": "ZD420",
+    "languages": [
+      "zpl"
+    ],
+    "dpi": [
+      203,
+      300
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 6,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for ZD420 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "ZD420 4 inch desktop, ZPL, 203 or 300 dpi.",
+    "explain": "The ZD420 is a 4 inch ZPL desktop that replaced a lot of GK and GX units on packing benches. Direct and transfer configurations both exist, so read the print method instead of assuming. 203 dpi width is about 832 dots. 300 dpi is wider in dots for the same physical label. This file stores the 203 dpi width and lists both resolutions. None of the numeric limits were measured on hardware for this tree. verified is false. Gap stock, tear-off, and a saved darkness are the usual shipping setup. Calibrate when the liner color changes.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "zd421",
+    "displayName": "ZD421",
+    "languages": [
+      "zpl"
+    ],
+    "dpi": [
+      203,
+      300
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 6,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for ZD421 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "ZD421 4 inch desktop, ZPL, successor to the ZD420.",
+    "explain": "The ZD421 is the later 4 inch ZPL desktop. It covers the same shipping-label job as the ZD420 and adds options such as wireless that do not change the bitmap path. Use 812 dots for a 4 inch label only after the head reports 203 dpi. A 300 dpi head needs a larger dot count for the same physical width. The speed range and 832 dot width are unverified defaults so a tool has somewhere to start. Product ids are empty. Read identification and the resolution key on connect, then show this profile as a hint rather than as a measured spec sheet.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  },
+  {
+    "id": "zp450",
+    "displayName": "ZP 450",
+    "languages": [
+      "zpl"
+    ],
+    "dpi": [
+      203
+    ],
+    "maxWidthDots": 832,
+    "speed": {
+      "min": 2,
+      "max": 6,
+      "units": "ips"
+    },
+    "darkness": {
+      "min": 0,
+      "max": 30
+    },
+    "usb": {
+      "vendorId": 2655,
+      "productIds": []
+    },
+    "verified": false,
+    "notes": "Profile for ZP 450 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read.",
+    "summary": "Desktop ZPL shipping printer, commonly 203 dpi and about 4 inches wide.",
+    "explain": "The ZP 450 is a desktop shipping printer that speaks ZPL. The usual head is 203 dpi with a printable width a little over 4 inches, about 832 dots. People use it for 4 by 6 inch carrier labels. Gap tracking, tear-off, and a darkness somewhere in the middle of 0 to 30 are the setup that matches that job. A 300 dpi variant exists in the family. Do not assume 203 until identification or the resolution key says so. This profile marks that uncertainty with verified false. Product ids are intentionally empty. Filter USB by vendor 0x0A5F and then confirm the model string.",
+    "sourceRef": "https://docs.zebra.com/us/en/printers/desktop.html"
+  }
+]

@@ -1,0 +1,27 @@
+id: "PW"
+language: "zpl"
+prefix: "^"
+name: "Print Width"
+category: "media"
+syntax: "^PWa"
+joiner: ""
+params:
+  - key: "a"
+    name: "width"
+    type: "number"
+    range: [2, 32000]
+    step: 1
+    units: "dots"
+persist: "^JUS"
+sgd: "ezpl.print_width"
+risk: "caution"
+summary: "Sets the printable width in dots."
+explain: "Print width limits how far across the head the printer will image, measured in dots. A 4 inch label at 203 dpi is 812 dots wide. If the width is narrower than the artwork, the right side of the label is clipped. If it is wider than the stock, the head burns on the platen and wears early. The firmware clamps to the head that is installed, so a number copied from a 300 dpi model is not automatically correct on a 203 dpi model. Set width before a calibration or a framed test label, then save. Pair it with label length so the page matches the physical stock."
+symptoms: ["clipped-label", "misaligned"]
+examples:
+  - title: "4 inch label at 203 dpi"
+    code: "^XA^PW812^XZ"
+seeAlso: ["LL", "LH", "LS", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-pw.html"

@@ -1,0 +1,20 @@
+id: "zp450"
+displayName: "ZP 450"
+languages: ["zpl"]
+dpi: [203]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 6
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for ZP 450 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "Desktop ZPL shipping printer, commonly 203 dpi and about 4 inches wide."
+explain: "The ZP 450 is a desktop shipping printer that speaks ZPL. The usual head is 203 dpi with a printable width a little over 4 inches, about 832 dots. People use it for 4 by 6 inch carrier labels. Gap tracking, tear-off, and a darkness somewhere in the middle of 0 to 30 are the setup that matches that job. A 300 dpi variant exists in the family. Do not assume 203 until identification or the resolution key says so. This profile marks that uncertainty with verified false. Product ids are intentionally empty. Filter USB by vendor 0x0A5F and then confirm the model string."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

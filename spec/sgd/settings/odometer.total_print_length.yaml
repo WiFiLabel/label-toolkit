@@ -1,0 +1,12 @@
+key: "odometer.total_print_length"
+type: "string"
+readOnly: true
+access: ["getvar"]
+zplEquivalent: null
+risk: "safe"
+summary: "Reads the lifetime print-length odometer."
+explain: "Total print length is a read-only odometer of how much media the printer has fed over its life. The text may be a bare number of inches or a number with a unit. Use it to spot a heavily used head when print quality is poor at settings that used to work. It does not reset when you load new media. This library does not parse the unit. Callers should keep the raw string. A set is rejected. There is no honest reason for a setup tool to rewrite a lifetime counter."
+symptoms: []
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-odometer-total-print-length.html"

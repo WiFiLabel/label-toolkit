@@ -1,0 +1,27 @@
+id: "S"
+language: "epl2"
+prefix: ""
+name: "Speed"
+category: "print-quality"
+syntax: "Sn"
+joiner: ""
+params:
+  - key: "n"
+    name: "speed"
+    type: "number"
+    range: [1, 6]
+    step: 1
+    units: "ips"
+persist: null
+sgd: null
+risk: "caution"
+summary: "Sets EPL2 print speed."
+explain: "Speed selects how fast an EPL2 printer moves the media. Typical desktop values run from 1 to 6, and the mechanism clamps anything higher. Slow down when a barcode prints light at the current darkness. Speed and density trade against each other. The command is a single letter and an integer. It is not the ZPL print-rate command, and mixing the two languages in one job confuses the parser. Set speed before the print command for that label."
+symptoms: ["faded-print"]
+examples:
+  - title: "Medium speed"
+    code: "S3"
+seeAlso: ["D", "P"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

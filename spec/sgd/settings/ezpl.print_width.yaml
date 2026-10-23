@@ -1,0 +1,14 @@
+key: "ezpl.print_width"
+type: "int"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "PW"
+risk: "caution"
+summary: "Print width in dots."
+explain: "EZPL print width is the stored printable width in dots. It matches the ZPL print-width command. A 4 inch label at 203 dpi is 812 dots. The same physical width at 300 dpi is a larger dot count, so do not reuse a number across heads. This library accepts 2 to 32000 and lets the printer clamp to the real head. Still send the true label width, not the head maximum, when the stock is narrower. Set width, print a frame, and only then save. A too-wide value wears the platen where there is no media."
+symptoms: ["clipped-label"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-print-width.html"
+range: [2, 32000]
+units: "dots"

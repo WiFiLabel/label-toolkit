@@ -1,0 +1,21 @@
+id: "ZB"
+language: "epl2"
+prefix: ""
+name: "Print Bottom First"
+category: "label-format"
+syntax: "ZB"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "caution"
+summary: "Prints the label starting at the bottom."
+explain: "Print bottom first reverses the EPL2 imaging direction so the bottom of the format comes out of the printer first. Use it when the stock path presents the label upside down relative to the artwork. The companion command prints top first. Direction is easy to confuse with a bad sensor. If the art is complete but rotated, change direction before you recalibrate. Send it once before the fields. It stays in effect until the other direction command replaces it."
+symptoms: ["misaligned"]
+examples:
+  - title: "Bottom first"
+    code: "ZB"
+seeAlso: ["ZT", "P"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

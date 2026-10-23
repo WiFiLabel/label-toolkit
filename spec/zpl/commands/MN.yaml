@@ -1,0 +1,26 @@
+id: "MN"
+language: "zpl"
+prefix: "^"
+name: "Media Tracking"
+category: "media"
+syntax: "^MNa"
+joiner: ""
+params:
+  - key: "a"
+    name: "tracking"
+    type: "enum"
+    values: ["Y", "N", "W", "M"]
+    default: "Y"
+persist: "^JUS"
+sgd: "ezpl.media_type"
+risk: "caution"
+summary: "Selects gap, continuous, or black-mark media tracking."
+explain: "Media tracking tells the sensor how to find the start of the next label. Y and W look for a gap or web, M looks for a black mark, and N means continuous stock with no index. Die-cut shipping labels almost always want gap tracking. Receipt-style continuous stock wants N, or the printer will hunt for a gap that is not there and feed a long strip. Black-mark stock that is set to gap tracking skips or stops in the wrong place. Calibrate after changing this, then save. If labels drift by a fixed amount after the right tracking mode is set, adjust label top or tear-off rather than flipping the sensor mode again."
+symptoms: ["skipping-labels", "blank-labels", "misaligned"]
+examples:
+  - title: "Gap sensing for die-cut labels"
+    code: "^XA^MNY^XZ"
+seeAlso: ["MT", "JC", "LL", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-mn.html"

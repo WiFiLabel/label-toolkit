@@ -1,0 +1,21 @@
+id: "N"
+language: "epl2"
+prefix: ""
+name: "Clear Buffer"
+category: "label-format"
+syntax: "N"
+joiner: ""
+params: []
+persist: null
+sgd: null
+risk: "safe"
+summary: "Clears the EPL image buffer before a new label."
+explain: "Clear buffer throws away the image currently built in an EPL2 printer so the next commands start from a blank page. Send it at the beginning of every label. Skipping it overlays the new art on whatever was left from the previous job. It does not calibrate, and it does not change width, length, speed, or darkness. The graphic wrapper emits this command before the bitmap so a stale image cannot show through."
+symptoms: ["ghost-image"]
+examples:
+  - title: "Clear the buffer"
+    code: "N"
+seeAlso: ["P", "GW"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-languages.html"

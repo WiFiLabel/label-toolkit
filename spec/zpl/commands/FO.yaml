@@ -1,0 +1,35 @@
+id: "FO"
+language: "zpl"
+prefix: "^"
+name: "Field Origin"
+category: "label-format"
+syntax: "^FOx,y"
+joiner: ","
+params:
+  - key: "x"
+    name: "x"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+    default: 0
+  - key: "y"
+    name: "y"
+    type: "number"
+    range: [0, 32000]
+    step: 1
+    units: "dots"
+    default: 0
+persist: null
+sgd: null
+risk: "safe"
+summary: "Sets the position of the next field."
+explain: "Field origin places the next field at x and y dots from the label home. x grows across the label and y grows down from the leading edge in normal orientation. Every text or barcode field needs its own origin. Reusing the previous coordinate stacks fields on top of each other. Positions outside the print width or label length are clipped. If a field vanishes, check the origin before changing darkness. The test label helper uses a small origin so sample text sits inside a 4 by 6 inch page."
+symptoms: ["clipped-label", "misaligned"]
+examples:
+  - title: "Place the next field"
+    code: "^FO20,20"
+seeAlso: ["FD", "FS", "LH"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-fo.html"

@@ -1,0 +1,20 @@
+id: "zd421"
+displayName: "ZD421"
+languages: ["zpl"]
+dpi: [203, 300]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 6
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for ZD421 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "ZD421 4 inch desktop, ZPL, successor to the ZD420."
+explain: "The ZD421 is the later 4 inch ZPL desktop. It covers the same shipping-label job as the ZD420 and adds options such as wireless that do not change the bitmap path. Use 812 dots for a 4 inch label only after the head reports 203 dpi. A 300 dpi head needs a larger dot count for the same physical width. The speed range and 832 dot width are unverified defaults so a tool has somewhere to start. Product ids are empty. Read identification and the resolution key on connect, then show this profile as a hint rather than as a measured spec sheet."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

@@ -1,0 +1,27 @@
+id: "LL"
+language: "zpl"
+prefix: "^"
+name: "Label Length"
+category: "media"
+syntax: "^LLa"
+joiner: ""
+params:
+  - key: "a"
+    name: "length"
+    type: "number"
+    range: [1, 32000]
+    step: 1
+    units: "dots"
+persist: "^JUS"
+sgd: "ezpl.label_length_max"
+risk: "caution"
+summary: "Sets the label length in dots for the current format or calibration."
+explain: "Label length is the distance, in dots, that the printer treats as one label. A 6 inch label at 203 dpi is 1218 dots. On gap stock the sensor still finds the gap, and this value is a hint. On continuous stock it is the actual feed distance, so a wrong length reprints a slice of the next form. Do not use a huge length to nudge the tear bar. That feeds extra media and can look like a second blank label. Use tear-off for a small present adjustment. Set the length to the real label, calibrate, and save. Maximum label length is a related setting and should stay a little longer than one label plus the gap."
+symptoms: ["skipping-labels", "short-feed"]
+examples:
+  - title: "6 inch label at 203 dpi"
+    code: "^XA^LL1218^XZ"
+seeAlso: ["PW", "MN", "TA", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-ll.html"

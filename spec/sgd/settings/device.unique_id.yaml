@@ -1,0 +1,12 @@
+key: "device.unique_id"
+type: "string"
+readOnly: true
+access: ["getvar"]
+zplEquivalent: null
+risk: "safe"
+summary: "Reads the printer unique id. It cannot be set."
+explain: "Unique id is a factory identifier for the device. Programs use it to tell two printers of the same model apart. The key is read-only. A set attempt is rejected by this library and should be rejected by the printer as well. Do not treat it as a secret password, but do not publish it in screenshots if the workflow uses it as an account key. If the reply is empty, fall back to the identification string from the host identification command."
+symptoms: ["unknown-model"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-device-unique-id.html"

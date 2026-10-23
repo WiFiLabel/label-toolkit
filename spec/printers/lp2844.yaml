@@ -1,0 +1,20 @@
+id: "lp2844"
+displayName: "LP 2844"
+languages: ["epl2"]
+dpi: [203]
+maxWidthDots: 832
+speed:
+  min: 2
+  max: 4
+  units: "ips"
+darkness:
+  min: 0
+  max: 30
+usb:
+  vendorId: 2655
+  productIds: []
+verified: false
+notes: "Profile for LP 2844 is a starting point for setup tools. verified is false: dpi options, top speed, and the 203 dpi width were not confirmed on hardware in this tree. USB vendor 2655 is 0x0A5F. Product ids stay empty until a device is read."
+summary: "Older desktop that speaks EPL2, commonly 203 dpi."
+explain: "The LP 2844 is the EPL2-era desktop used for years as a shipping printer. It does not speak ZPL unless the hardware is the Z variant. Treat width and length with the EPL commands, and send a graphic with the GW wrapper rather than a ZPL graphic field. 203 dpi and a 4 inch head are the usual numbers. Speed tops out lower than later ZPL desktops. All of those figures are unverified here. If a unit answers ZPL identification, it is not this profile. Use the LP 2844-Z profile instead."
+sourceRef: "https://docs.zebra.com/us/en/printers/desktop.html"

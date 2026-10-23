@@ -1,0 +1,25 @@
+{
+  "bitmaps": [
+    {
+      "fn": "wrapZplGfa",
+      "bitmapHex": "A5",
+      "width": 8,
+      "height": 1,
+      "expected": "^XA\n^PW8\n^LL1\n^FO0,0^GFA,1,1,1,A5^FS\n^XZ\n"
+    },
+    {
+      "fn": "wrapEplGw",
+      "bitmapHex": "A5",
+      "width": 8,
+      "height": 1,
+      "expectedHex": "0d0a4e0d0a4757302c302c312c312ca50d0a50310d0a"
+    },
+    {
+      "fn": "wrapTsplBitmap",
+      "bitmapHex": "A5",
+      "width": 8,
+      "height": 1,
+      "expectedHex": "53495a4520342c360d0a434c530d0a4249544d415020302c302c312c312c302ca50d0a5052494e5420310d0a"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+key: "ezpl.tear_off"
+type: "int"
+readOnly: false
+access: ["getvar", "setvar"]
+zplEquivalent: "TA"
+risk: "caution"
+summary: "Tear-off present adjustment in dots."
+explain: "Tear-off is the SGD form of the present adjustment. Positive numbers feed the label farther out of the printer and negative numbers stop it sooner. The working window checked here is -120 to 120 dots, matching the ZPL tear-off command used on desktop mechanisms. At 203 dpi, eight dots is about a millimeter. Change it in small steps and print one label between tries. Do not encode a large present distance as extra label length. That feeds another label. This key is the small trim."
+symptoms: ["misaligned", "not-presenting"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-sgd-printer-commands/r-sgd-ezpl-tear-off.html"
+range: [-120, 120]
+units: "dots"

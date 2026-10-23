@@ -1,0 +1,28 @@
+id: "MT"
+language: "zpl"
+prefix: "^"
+name: "Media Type"
+category: "media"
+syntax: "^MTa"
+joiner: ""
+params:
+  - key: "a"
+    name: "method"
+    type: "enum"
+    values: ["T", "D"]
+    default: "D"
+persist: "^JUS"
+sgd: "ezpl.print_method"
+risk: "caution"
+summary: "Selects direct thermal stock or thermal transfer ribbon."
+explain: "Media type tells the printer whether heat should mark coated stock directly or melt a ribbon onto ordinary labels. Direct thermal uses D. Thermal transfer uses T and expects a ribbon that matches the label face. The wrong choice is a common cause of blank labels: transfer mode with no ribbon, or direct mode on stock that needs a ribbon. Set it before calibration, print one label, and save. Leaving the wrong mode in place wastes media and can glaze the head."
+symptoms: ["blank-labels", "ribbon-wrinkle"]
+examples:
+  - title: "Direct thermal"
+    code: "^XA^MTD^XZ"
+  - title: "Thermal transfer"
+    code: "^XA^MTT^XZ"
+seeAlso: ["MN", "SD", "JUS"]
+models:
+  all: true
+sourceRef: "https://docs.zebra.com/us/en/printers/software/zpl-pg/c-zpl-zpl-commands/r-zpl-mt.html"
