@@ -19,8 +19,9 @@ for (const dir of packages) {
   const pkgPath = join(root, dir, "package.json");
   const readmePath = join(root, dir, "README.md");
   const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+  const readme = existsSync(readmePath) ? readFileSync(readmePath, "utf8") : "";
   const problems = [];
-  if (!existsSync(readmePath)) problems.push("missing README.md");
+  if (!readme.includes(`# ${pkg.name}`)) problems.push("README.md is missing the package heading");
   if (pkg.homepage !== homepage) {
     problems.push(`homepage is ${JSON.stringify(pkg.homepage)}`);
   }

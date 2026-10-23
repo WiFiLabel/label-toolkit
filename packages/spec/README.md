@@ -24,7 +24,7 @@ const darkness = settingByKey["media.darkness"];
 
 Printer ids in this release: `gk420d`, `gx420d`, `lp2844`, `lp2844-z`, `zd410`, `zd420`, `zd421`, `zp450`.
 
-Edit the YAML, then run codegen. Do not hand-edit `packages/spec/src/generated/` or `packages/spec/data/`.
+Edit the YAML in the [label-toolkit repo](https://github.com/WiFiLabel/label-toolkit/tree/main/spec), then run codegen. Do not hand-edit the generated TypeScript or the JSON under `packages/spec/data/`.
 
 The YAML shape is described at <https://github.com/WiFiLabel/label-toolkit/blob/main/docs/spec-format.md>.
 

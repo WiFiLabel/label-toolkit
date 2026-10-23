@@ -13,13 +13,14 @@ npm install @wifilabel/box-client
 ```ts
 import { BoxClient } from "@wifilabel/box-client";
 
+const bytes = new Uint8Array([0x7e, 0x48, 0x49]);
 const box = BoxClient.connect("http://192.168.1.20");
 await box.write(bytes);
 const reply = await box.read(4000);
 const info = await box.info();
 ```
 
-`bytes` is a `Uint8Array`. `read` POSTs the pending bytes to `/api/raw` and returns the body. `info` GETs `/api/info`.
+`read` POSTs the pending bytes to `/api/raw` and returns the body. `info` GETs `/api/info`.
 
 ## What you get
 

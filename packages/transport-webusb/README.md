@@ -13,13 +13,14 @@ npm install @wifilabel/webusb
 ```ts
 import { requestPrinter, WebUsbTransport } from "@wifilabel/webusb";
 
+const bytes = new Uint8Array([0x7e, 0x48, 0x49]);
 const device = await requestPrinter(navigator.usb);
 const transport = await WebUsbTransport.open(device);
 await transport.write(bytes);
 const chunk = await transport.read(2000);
 ```
 
-`bytes` is a `Uint8Array` you already built. There is no public constructor. `open` claims the bulk in and out endpoints.
+`bytes` here is `~HI`. There is no public constructor. `open` claims the bulk in and out endpoints.
 
 ## What you get
 
