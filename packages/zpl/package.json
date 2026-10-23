@@ -1,7 +1,19 @@
 {
   "name": "@wifilabel/zpl",
-  "version": "0.1.0",
-  "description": "ZPL and SGD builders and status parsers for thermal label printers. Zero runtime dependencies outside the WiFiLabel spec packages.",
+  "version": "0.1.1",
+  "description": "Build and parse ZPL and SGD for Zebra label printers.",
+  "keywords": [
+    "zpl",
+    "zebra",
+    "sgd",
+    "label-printer",
+    "thermal-printer",
+    "host-status"
+  ],
+  "homepage": "https://wifilabel.com/",
+  "bugs": {
+    "url": "https://github.com/WiFiLabel/label-toolkit/issues"
+  },
   "license": "MIT",
   "author": "WiFiLabel <hello@wifilabel.com>",
   "type": "module",

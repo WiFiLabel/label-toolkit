@@ -1,7 +1,18 @@
 {
   "name": "@wifilabel/epl2",
-  "version": "0.1.0",
-  "description": "Small EPL2 builders for legacy desktop label printers.",
+  "version": "0.1.1",
+  "description": "EPL2 setup commands and a TSPL bitmap wrapper for desktop label printers.",
+  "keywords": [
+    "epl2",
+    "epl",
+    "tspl",
+    "label-printer",
+    "thermal-printer"
+  ],
+  "homepage": "https://wifilabel.com/",
+  "bugs": {
+    "url": "https://github.com/WiFiLabel/label-toolkit/issues"
+  },
   "license": "MIT",
   "author": "WiFiLabel <hello@wifilabel.com>",
   "type": "module",
