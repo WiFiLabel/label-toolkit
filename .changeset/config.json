@@ -2,10 +2,19 @@
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [
+    [
+      "@wifilabel/printer-spec",
+      "@wifilabel/zpl",
+      "@wifilabel/epl2",
+      "@wifilabel/transport",
+      "@wifilabel/webusb",
+      "@wifilabel/box-client"
+    ]
+  ],
   "linked": [],
   "access": "public",
+  "ignore": ["@wifilabel/codegen"],
   "baseBranch": "main",
-  "updateInternalDependencies": "patch",
-  "ignore": []
+  "updateInternalDependencies": "patch"
 }
