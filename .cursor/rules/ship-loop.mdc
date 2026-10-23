@@ -1,0 +1,24 @@
+---
+description: Ship loop for WiFiLabel/label-toolkit. Use when opening a PR, reviewing, merging, or verifying an npm release.
+alwaysApply: false
+---
+
+# Ship loop
+
+Start from the latest `origin/main`: fetch, check out `main`, hard-reset to that tip, then branch. Do not reuse a stale local `main`.
+
+Remote must be `github.com/WiFiLabel/label-toolkit`. No `mosvov/` fork. Do not change git config. Every commit, including the merge, uses:
+
+```bash
+GIT_AUTHOR_NAME=WiFiLabel GIT_AUTHOR_EMAIL=hello@wifilabel.com \
+GIT_COMMITTER_NAME=WiFiLabel GIT_COMMITTER_EMAIL=hello@wifilabel.com \
+  git commit
+```
+
+`git log -1 --format='%an %ae %cn %ce'` must print `WiFiLabel hello@wifilabel.com` twice.
+
+- Open the PR on `WiFiLabel/label-toolkit`.
+- Review the full diff. Fix every finding in a new WiFiLabel commit. Review the fixes.
+- Merge only when CI is green and no finding is still open. Merge locally with `--no-ff`, then push `main`. If `main` is protected, `gh pr merge --merge` and confirm the change commits are still WiFiLabel.
+- Wait for CI on `main`. The Release workflow publishes when that CI succeeds and no changeset file is left.
+- Verify every package that should have changed (version, homepage, keywords, README), not one sample. Registry lag means wait and re-fetch. A real miss means a new branch from latest `main` and the same loop again.
