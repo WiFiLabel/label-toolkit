@@ -1,0 +1,39 @@
+name: Reclaim release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reclaim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Publish v0.1.0 as the repository automation
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          author=$(gh release view v0.1.0 --json author --jq .author.login || true)
+          if [ "$author" = "mosvov" ]; then
+            gh release delete v0.1.0 --yes
+          fi
+          if ! gh release view v0.1.0 >/dev/null 2>&1; then
+            gh release create v0.1.0 \
+              --verify-tag \
+              --title "v0.1.0" \
+              --notes "$(cat <<'EOF'
+First public release of the shared printer packages.
+
+- [@wifilabel/printer-spec@0.1.0](https://www.npmjs.com/package/@wifilabel/printer-spec)
+- [@wifilabel/zpl@0.1.0](https://www.npmjs.com/package/@wifilabel/zpl)
+- [@wifilabel/epl2@0.1.0](https://www.npmjs.com/package/@wifilabel/epl2)
+- [@wifilabel/transport@0.1.0](https://www.npmjs.com/package/@wifilabel/transport)
+- [@wifilabel/webusb@0.1.0](https://www.npmjs.com/package/@wifilabel/webusb)
+- [@wifilabel/box-client@0.1.0](https://www.npmjs.com/package/@wifilabel/box-client)
+EOF
+)"
+          fi
