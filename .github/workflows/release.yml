@@ -41,9 +41,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          FORCE_COLOR: "0"
       - name: Tag the shared version
         if: steps.changesets.outputs.published == 'true'
         run: |
           version=$(node -p "require('./packages/zpl/package.json').version")
+          if git rev-parse "refs/tags/v${version}" >/dev/null 2>&1; then
+            exit 0
+          fi
           git tag "v${version}"
           git push origin "v${version}"
